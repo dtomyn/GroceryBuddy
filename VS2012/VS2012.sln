@@ -1,7 +1,71 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MockScreens", "http://localhost:58374", "{21B5122E-C50D-4B8F-8545-8B7E34F4DCED}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_58374"
+		Debug.AspNetCompiler.PhysicalPath = "..\MockScreens\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58374\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_58374"
+		Release.AspNetCompiler.PhysicalPath = "..\MockScreens\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58374\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "..\MockScreens\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryData", "..\GroceryData\GroceryData.csproj", "{3BEF810F-EADF-4871-90E4-01A5EA3CCB67}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "GroceryBuddy", "http://localhost:58383", "{74F2D972-3430-4456-A3AE-AD693E69C9F3}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_58383"
+		Debug.AspNetCompiler.PhysicalPath = "..\GroceryBuddy\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58383\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_58383"
+		Release.AspNetCompiler.PhysicalPath = "..\GroceryBuddy\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58383\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "..\GroceryBuddy\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21B5122E-C50D-4B8F-8545-8B7E34F4DCED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21B5122E-C50D-4B8F-8545-8B7E34F4DCED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21B5122E-C50D-4B8F-8545-8B7E34F4DCED}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{21B5122E-C50D-4B8F-8545-8B7E34F4DCED}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{3BEF810F-EADF-4871-90E4-01A5EA3CCB67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BEF810F-EADF-4871-90E4-01A5EA3CCB67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BEF810F-EADF-4871-90E4-01A5EA3CCB67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BEF810F-EADF-4871-90E4-01A5EA3CCB67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74F2D972-3430-4456-A3AE-AD693E69C9F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74F2D972-3430-4456-A3AE-AD693E69C9F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74F2D972-3430-4456-A3AE-AD693E69C9F3}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{74F2D972-3430-4456-A3AE-AD693E69C9F3}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
