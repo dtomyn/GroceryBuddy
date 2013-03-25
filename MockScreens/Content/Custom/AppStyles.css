@@ -1,0 +1,51 @@
+﻿html {
+    background-color: #CCCCCC;
+}
+
+body {
+    font-family: "Helvetica" , Arial, sans-serif;
+    background-color: #CCCCCC;
+    background-repeat: repeat;
+}
+
+#home {
+	text-align: center;
+/*	
+    background: url('../../Images/logo-welcome.png');
+*/
+}
+
+
+#home .ui-controlgroup {
+	width: 60%;
+	margin: 0 auto;
+	margin-top: 20px;
+	max-width: 250px;
+}
+
+#home img {
+	width: 50%;
+	max-width: 200px;
+}
+
+.ui-icon-vs_cart {
+	background-image: url("../../Images/ShoppingCart_18.PNG");
+}
+
+.ui-icon-vs_config {
+	background-image: url("../../Images/Configuration_18.PNG");
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:2) {
+
+	.ui-icon-vs_cart {
+	    background-image: url("../../Images/ShoppingCart_36.PNG");
+		background-size:18px 18px;
+	}
+	
+	.ui-icon-vs_config {
+	    background-image: url("../../Images/Configuration_36.PNG");
+		background-size:18px 18px;
+	}
+
+}/*HR was the 36 one*/

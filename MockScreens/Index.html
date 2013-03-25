@@ -9,6 +9,7 @@
     <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script src="Scripts/jquery.mobile-1.3.0.min.js"></script>
     <script src="Scripts/knockout-2.2.1.js"></script>
+    <link href="Content/Custom/AppStyles.css" rel="stylesheet" />
 </head>
 <body>
 <!-- HOME SCREEN -->
@@ -40,6 +41,7 @@
 		data-role="page"
 		data-title="Grocery Buddy: Carts">
 
+        <!-- STANDARD HEADER -->
 		<div data-role="header"
 			data-position="fixed">
 			<h1>Carts</h1>
@@ -52,10 +54,12 @@
 				data-iconpos="notext"
 				data-rel="dialog"
 				>Info</a>
-		</div><!-- header -->
+		</div>
+        <!-- /STANDARD HEADER -->
+
 		<div data-role="content">
         <!-- NOTE: for now just using table's to layout screen... easy this way during mockups -->
-        <!-- TODO!!!!!! -->
+        <!-- TODO!!!!!! this is where will be using knockout -->
         <div class="topOfPage">
         <table>
             <tr>
@@ -100,6 +104,29 @@
 		    <a href="#addCartPage" data-transition="flip"><img src="Images/NewShoppingCart.PNG" /></a>
         </div>
 		</div>
+        <!-- STANDARD FOOTER -->
+		<div data-role="footer"
+			data-position="fixed"
+			data-id="vs_footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home" 
+					data-role="button"
+					data-icon="home"
+					>Home</a></li>
+					<li><a href="#carts" 
+					data-role="button"
+					data-icon="vs_cart"
+					>Carts</a></li>
+					<li><a href="#config" 
+					data-role="button"
+					data-icon="vs_config"
+					>Config</a></li>
+				</ul>
+			</div>
+		</div>
+        <!-- /STANDARD FOOTER -->
+
     </div>
 <!-- /CARTS SCREEN -->
 
@@ -107,9 +134,10 @@
 	<div id="addCartPage"
 		data-role="page"
 		data-title="Add Cart">
+
+        <!-- STANDARD HEADER -->
 		<div data-role="header"
-			data-position="fixed"
-			data-id="vs_header">
+			data-position="fixed">
 			<h1>Add Cart</h1>
 			<a href="#home"
 				data-icon="home"
@@ -120,21 +148,48 @@
 				data-iconpos="notext"
 				data-rel="dialog"
 				>Info</a>
-		</div><!-- header -->
+		</div>
+        <!-- /STANDARD HEADER -->
+
 		<div data-role="content">
             <div><label for="addCartName">Name:</label> <input id="addCartName" type="text" /></div>
             <div><label for="addCartReminder">Reminder:</label> <input id="addCartReminder" type="date" /></div>
         </div>
+
+        <!-- STANDARD FOOTER -->
+		<div data-role="footer"
+			data-position="fixed"
+			data-id="vs_footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home" 
+					data-role="button"
+					data-icon="home"
+					>Home</a></li>
+					<li><a href="#carts" 
+					data-role="button"
+					data-icon="vs_cart"
+					>Carts</a></li>
+					<li><a href="#config" 
+					data-role="button"
+					data-icon="vs_config"
+					>Config</a></li>
+				</ul>
+			</div>
+		</div>
+        <!-- /STANDARD FOOTER -->
+
     </div>
 <!-- /ADD A CART -->
 
-<!-- TODO: Delete a cart -->
+<!--<!-- TODO: Delete a cart -->
 	<div id="Div1"
 		data-role="page"
 		data-title="Add Cart">
+
+        <!-- STANDARD HEADER -->
 		<div data-role="header"
-			data-position="fixed"
-			data-id="vs_header">
+			data-position="fixed">
 			<h1>Delete Cart</h1>
 			<a href="#home"
 				data-icon="home"
@@ -145,13 +200,71 @@
 				data-iconpos="notext"
 				data-rel="dialog"
 				>Info</a>
-		</div><!-- header -->
+		</div>
+        <!-- /STANDARD HEADER -->
+
 		<div data-role="content">
             <div><label for="addCartName">Name:</label> <input id="Text1" type="text" /></div>
             <div><label for="addCartReminder">Reminder:</label> <input id="Date1" type="date" /></div>
         </div>
     </div>
 <!-- TODO: Delete a cart -->
+
+<!-- config -->
+	<div id="config"
+		data-role="page"
+		data-title="Config">
+
+        <!-- STANDARD HEADER -->
+		<div data-role="header"
+			data-position="fixed">
+			<h1>Config</h1>
+			<a href="#home"
+				data-icon="home"
+				data-iconpos="notext"
+				>Home</a>
+			<a href="#info"
+				data-icon="info"
+				data-iconpos="notext"
+				data-rel="dialog"
+				>Info</a>
+		</div>
+        <!-- /STANDARD HEADER -->
+
+		<div data-role="content">
+            Stuff like
+            <ul>
+                <li>Distance willing to travel</li>
+                <li>Unit of measure(?)</li>
+                <li>...</li>
+            </ul>
+        </div>
+
+        <!-- STANDARD FOOTER -->
+		<div data-role="footer"
+			data-position="fixed"
+			data-id="vs_footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home" 
+					data-role="button"
+					data-icon="home"
+					>Home</a></li>
+					<li><a href="#carts" 
+					data-role="button"
+					data-icon="vs_cart"
+					>Carts</a></li>
+					<li><a href="#config" 
+					data-role="button"
+					data-icon="vs_config"
+					>Config</a></li>
+				</ul>
+			</div>
+		</div>
+        <!-- /STANDARD FOOTER -->
+
+    </div>
+<!-- /config -->
 
 <!-- ABOUT / INFO PAGE -->
 	<div data-role="page" id="info">
