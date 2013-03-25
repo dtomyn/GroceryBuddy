@@ -61,8 +61,6 @@
         <!-- /STANDARD HEADER -->
 
 		<div data-role="content">
-        <!-- NOTE: for now just using table's to layout screen... easy this way during mockups -->
-        <!-- TODO!!!!!! this is where will be using knockout -->
             <ol data-bind="foreach: carts">
                 <li>
                     <strong data-bind="text: name"></strong>
@@ -76,16 +74,6 @@
                     </div>
                 </li>
             </ol>
-
-<!--            <div data-bind="foreach: carts">
-                <strong data-bind="text: name"></strong>
-                <div class="ui-grid-b">
-                    <div class="ui-block-a"><a href="#cartItems" data-transition="flip"><img src="Images/ShoppingCart.PNG" /></a></div>
-                    <div class="ui-block-b"><a href="#"><img src="Images/Delete.PNG" /></a></div>
-                    <div class="ui-block-c"><a href="#"><img src="Images/CalendarColour.PNG" /></a></div>
-                </div>
-                20 items
-            </div>-->
             <div class="bottomOfPage">
 		        <a href="#addCartPage" data-transition="flip"><img src="Images/NewShoppingCart.PNG" /></a>
             </div>
@@ -283,7 +271,7 @@
         <!-- /STANDARD HEADER -->
 
 		<div data-role="content">
-            <div><label for="addCartName">Name:</label> <input id="Text2" type="text" /></div>
+            <div><label for="itemName">Name:</label> <input id="itemName" type="text" /></div>
             <div>
     		    <label for="select1">Category:</label>
 			    <select name="select1" id="select1" data-native-menu="true">
