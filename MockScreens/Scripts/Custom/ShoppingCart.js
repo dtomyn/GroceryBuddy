@@ -1,4 +1,4 @@
-﻿(function () { // Wrap in function to prevent accidental globals
+﻿$(function () {
 
     // Overall view model for the application
 
@@ -29,4 +29,4 @@
     }
 
     ko.applyBindings(new ShoppingCartViewModel());
-})();
+});

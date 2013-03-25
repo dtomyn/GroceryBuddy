@@ -63,25 +63,29 @@
 		<div data-role="content">
         <!-- NOTE: for now just using table's to layout screen... easy this way during mockups -->
         <!-- TODO!!!!!! this is where will be using knockout -->
-            <div data-bind="foreach: carts">
-                <input data-bind="value: name()" />
+            <ol data-bind="foreach: carts">
+                <li>
+                    <strong data-bind="text: name"></strong>
+                    <div class="ui-grid-b">
+                        <div class="ui-block-a"><a href="#cartItems" data-transition="flip"><img src="Images/ShoppingCart.PNG" /></a></div>
+                        <div class="ui-block-b"><a href="#"><img src="Images/Delete.PNG" /></a></div>
+                        <div class="ui-block-c"><a href="#"><img src="Images/CalendarColour.PNG" /></a></div>
+                    </div>
+                    <div>
+                        There are <em data-bind="text: numberOfItems"></em> item in this cart
+                    </div>
+                </li>
+            </ol>
+
+<!--            <div data-bind="foreach: carts">
+                <strong data-bind="text: name"></strong>
                 <div class="ui-grid-b">
                     <div class="ui-block-a"><a href="#cartItems" data-transition="flip"><img src="Images/ShoppingCart.PNG" /></a></div>
                     <div class="ui-block-b"><a href="#"><img src="Images/Delete.PNG" /></a></div>
                     <div class="ui-block-c"><a href="#"><img src="Images/CalendarColour.PNG" /></a></div>
                 </div>
                 20 items
-            </div>
-
-            <div>
-                Shopping Cart 2
-                <div class="ui-grid-b">
-                    <div class="ui-block-a"><a href="#cartItems" data-transition="flip"><img src="Images/ShoppingCart.PNG" /></a></div>
-                    <div class="ui-block-b"><a href="#"><img src="Images/Delete.PNG" /></a></div>
-                    <div class="ui-block-c"><a href="#"><img src="Images/CalendarColour.PNG" /></a></div>
-                </div>
-                5 items
-            </div>
+            </div>-->
             <div class="bottomOfPage">
 		        <a href="#addCartPage" data-transition="flip"><img src="Images/NewShoppingCart.PNG" /></a>
             </div>
