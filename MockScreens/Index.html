@@ -10,6 +10,7 @@
     <script src="Scripts/jquery.mobile-1.3.0.min.js"></script>
     <script src="Scripts/knockout-2.2.1.js"></script>
     <link href="Content/Custom/AppStyles.css" rel="stylesheet" />
+    <script src="Scripts/Custom/ShoppingCart.js"></script>
 </head>
 <body>
 <!-- HOME SCREEN -->
@@ -62,8 +63,8 @@
 		<div data-role="content">
         <!-- NOTE: for now just using table's to layout screen... easy this way during mockups -->
         <!-- TODO!!!!!! this is where will be using knockout -->
-            <div>
-                Shopping Cart 1
+            <div data-bind="foreach: carts">
+                <input data-bind="value: name()" />
                 <div class="ui-grid-b">
                     <div class="ui-block-a"><a href="#cartItems" data-transition="flip"><img src="Images/ShoppingCart.PNG" /></a></div>
                     <div class="ui-block-b"><a href="#"><img src="Images/Delete.PNG" /></a></div>
