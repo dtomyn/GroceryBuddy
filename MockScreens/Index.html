@@ -19,7 +19,9 @@
 		data-title="Grocery Buddy: Home">
 		<div data-role="content">
 			Welcome to Grocery Buddy!
+            <div>
 			<img src="Images/GroceryBuddyLogo.png" alt="Grocery Buddy Logo" />
+            </div>
 		</div>
 		<div data-role="controlgroup">
 			<a href="#carts" 
@@ -60,50 +62,30 @@
 		<div data-role="content">
         <!-- NOTE: for now just using table's to layout screen... easy this way during mockups -->
         <!-- TODO!!!!!! this is where will be using knockout -->
-        <div class="topOfPage">
-        <table>
-            <tr>
-                <td colspan="3">
-                    Shopping Cart 1
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="Images/ShoppingCart.PNG" />
-                </td>
-                <td>
-                    <img src="Images/Delete.PNG" />
-                </td>
-                <td>
-                    <img src="Images/Calendar.PNG" />
-                </td>
-            </tr>
-            <tr><td colspan="3">20 items</td></tr>
+            <div>
+                Shopping Cart 1
+                <div class="ui-grid-b">
+                    <div class="ui-block-a"><a href="#cartItems" data-transition="flip"><img src="Images/ShoppingCart.PNG" /></a></div>
+                    <div class="ui-block-b"><a href="#"><img src="Images/Delete.PNG" /></a></div>
+                    <div class="ui-block-c"><a href="#"><img src="Images/CalendarColour.PNG" /></a></div>
+                </div>
+                20 items
+            </div>
 
-            <tr>
-                <td colspan="3">
-                    Shopping Cart 2
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="Images/ShoppingCart.PNG" />
-                </td>
-                <td>
-                    <img src="Images/Delete.PNG" />
-                </td>
-                <td>
-                    <img src="Images/Calendar.PNG" />
-                </td>
-            </tr>
-            <tr><td colspan="3">5 items</td></tr>
-        </table>
-        </div>
-        <p></p><p></p>
-        <div class="bottomOfPage">
-		    <a href="#addCartPage" data-transition="flip"><img src="Images/NewShoppingCart.PNG" /></a>
-        </div>
+            <div>
+                Shopping Cart 2
+                <div class="ui-grid-b">
+                    <div class="ui-block-a"><a href="#cartItems" data-transition="flip"><img src="Images/ShoppingCart.PNG" /></a></div>
+                    <div class="ui-block-b"><a href="#"><img src="Images/Delete.PNG" /></a></div>
+                    <div class="ui-block-c"><a href="#"><img src="Images/CalendarColour.PNG" /></a></div>
+                </div>
+                5 items
+            </div>
+            <div class="bottomOfPage">
+		        <a href="#addCartPage" data-transition="flip"><img src="Images/NewShoppingCart.PNG" /></a>
+            </div>
 		</div>
+
         <!-- STANDARD FOOTER -->
 		<div data-role="footer"
 			data-position="fixed"
@@ -209,6 +191,145 @@
         </div>
     </div>
 <!-- TODO: Delete a cart -->
+
+<!-- CART ITEMS SCREEN -->
+	<div id="cartItems"
+		data-role="page"
+		data-title="Grocery Buddy: Cart Items">
+
+        <!-- STANDARD HEADER -->
+		<div data-role="header"
+			data-position="fixed">
+			<h1>Cart Items</h1>
+			<a href="#home"
+				data-icon="home"
+				data-iconpos="notext"
+				>Home</a>
+			<a href="#info"
+				data-icon="info"
+				data-iconpos="notext"
+				data-rel="dialog"
+				>Info</a>
+		</div>
+        <!-- /STANDARD HEADER -->
+
+		<div data-role="content">
+        <!-- NOTE: for now just using table's to layout screen... easy this way during mockups -->
+        <!-- TODO!!!!!! this is where will be using knockout -->
+        <div class="topOfPage">
+        <table>
+            <tr>
+                <td colspan="3">
+                    Need to find out how to do the fancy groupings...
+                </td>
+            </tr>
+        </table>
+        </div>
+        <p></p><p></p>
+        <div class="bottomOfPage">
+		    <a href="#addCartItem" data-transition="flip"><img src="Images/Add.PNG" /></a>
+        </div>
+		</div>
+        <!-- STANDARD FOOTER -->
+		<div data-role="footer"
+			data-position="fixed"
+			data-id="vs_footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home" 
+					data-role="button"
+					data-icon="home"
+					>Home</a></li>
+					<li><a href="#carts" 
+					data-role="button"
+					data-icon="vs_cart"
+					>Carts</a></li>
+					<li><a href="#config" 
+					data-role="button"
+					data-icon="vs_config"
+					>Config</a></li>
+				</ul>
+			</div>
+		</div>
+        <!-- /STANDARD FOOTER -->
+
+    </div>
+<!-- /CART ITEMS SCREEN -->
+
+<!-- ADD A CART ITEM -->
+	<div id="addCartItem"
+		data-role="page"
+		data-title="Add Cart Item">
+
+        <!-- STANDARD HEADER -->
+		<div data-role="header"
+			data-position="fixed">
+			<h1>Add Cart Item</h1>
+			<a href="#home"
+				data-icon="home"
+				data-iconpos="notext"
+				>Home</a>
+			<a href="#info"
+				data-icon="info"
+				data-iconpos="notext"
+				data-rel="dialog"
+				>Info</a>
+		</div>
+        <!-- /STANDARD HEADER -->
+
+		<div data-role="content">
+            <div><label for="addCartName">Name:</label> <input id="Text2" type="text" /></div>
+            <div>
+    		    <label for="select1">Category:</label>
+			    <select name="select1" id="select1" data-native-menu="true">
+                    <option>Choose One:</option>
+                    <option value="value1">Produce</option>
+                    <option value="value2">Dairy</option>
+                    <option value="value3">Junk Food</option>
+                    <option value="value3">...</option>
+                </select>
+            </div>
+            <div><label for="addCartName"># of pieces:</label> <input id="Text3" type="number" /></div>
+            <div><label for="addCartName">Size of item:</label> <input id="Number1" type="number" /></div>
+            <div>
+    		    <label for="select1">Measurement:</label>
+			    <select name="select1" id="select2" data-native-menu="true">
+                    <option>Choose One:</option>
+                    <option value="value1">Grams</option>
+                    <option value="value2">KG</option>
+                    <option value="value3">ML</option>
+                    <option value="value3">L</option>
+                </select>
+            </div>
+
+        </div>
+
+        <!-- STANDARD FOOTER -->
+		<div data-role="footer"
+			data-position="fixed"
+			data-id="vs_footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home" 
+					data-role="button"
+					data-icon="home"
+					>Home</a></li>
+					<li><a href="#carts" 
+					data-role="button"
+					data-icon="vs_cart"
+					>Carts</a></li>
+					<li><a href="#config" 
+					data-role="button"
+					data-icon="vs_config"
+					>Config</a></li>
+				</ul>
+			</div>
+		</div>
+        <!-- /STANDARD FOOTER -->
+
+    </div>
+<!-- /ADD A CART ITEM -->
+
 
 <!-- config -->
 	<div id="config"

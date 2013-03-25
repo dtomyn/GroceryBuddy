@@ -1,11 +1,5 @@
-﻿html {
-    background-color: #CCCCCC;
-}
-
-body {
+﻿body {
     font-family: "Helvetica" , Arial, sans-serif;
-    background-color: #CCCCCC;
-    background-repeat: repeat;
 }
 
 #home {
@@ -45,7 +39,7 @@ body {
 	
 	.ui-icon-vs_config {
 	    background-image: url("../../Images/Configuration_36.PNG");
-		background-size:18px 18px;
+        background-size:18px 18px;
 	}
 
-}/*HR was the 36 one*/
+}
