@@ -82,7 +82,6 @@ $(function () {
             availableMeasurements = ko.observableArray([]),
 
             getCarts = function () {
-                alert('loading carts');
                 carts.push(new GroceryCart(++shoppingCartId, "Shopping Cart 1"));
                 carts.push(new GroceryCart(++shoppingCartId, "Shopping Cart 2"));
             }
@@ -103,8 +102,20 @@ $(function () {
             }
             //,
             //removeCart = function (cart) { self.carts.remove(cart) }
-            //,
-            //addCart = function () { self.carts.push(new GroceryCart()) }
+            ,
+            startAddCart = function () {
+                var newCart = new GroceryCart(++shoppingCartId, "Enter name");
+                //self.view.AddItem(newItem);
+                selectedCart(newCart);
+                $.mobile.changePage("#addCartPage");
+            }
+            , 
+            saveCart = function () {
+                //not ideal at all... but
+//                var newItem = new GroceryCart(selectedCart.id, selectedCart.name);
+                carts.push(selectedCart);
+                $.mobile.changePage("#carts");
+            }
         //            ,
         //            selectCart = function () {
         //                $.mobile.changePage("#cartItems");
@@ -127,8 +138,13 @@ $(function () {
             //, removeCart: removeCart
             //, addCart: addCart
             //            , selectCart: selectCart
+            , startAddCart: startAddCart
+            , saveCart: saveCart
+            //, removeCart: removeCart
         };
     })();
 
     ko.applyBindings(shoppingCartViewModel);
+
+    $.mobile.defaultPageTransition = "slide";
 });
