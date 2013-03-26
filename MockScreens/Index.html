@@ -64,10 +64,9 @@
 
         <div data-role="content">
             <div data-role="content">
-                <ul data-bind="foreach: carts">
+                <ul id="theCartList" data-bind="foreach: carts">
                     <li>
-                        <strong data-bind="text: id"></strong>
-                        <div data-bind="text: name" contenteditable="true"></div>
+                        <strong data-bind="text: name" contenteditable="true"></strong>
                         <div class="ui-grid-b">
                             <div class="ui-block-a">
                                 <a href="#cartItems" data-transition="flip">
@@ -146,17 +145,17 @@
         <!-- /STANDARD HEADER -->
 
         <div data-role="content">
-            <div data-role="fieldcontain">
-                <fieldset data-role="controlgroup" data-bind="with: selectedCart">
+            <div>
+                    <label data-bind="text: currentCartId"></label>
                     <label for="cartName">
                         Cart name
                     </label>
-                    <input name="cartName" id="cartName" placeholder="Enter cart name" type="text" data-bind="value: name, valueUpdate: 'afterkeydown'" />
-                </fieldset>
+                    <input name="cartName" id="cartName" placeholder="Enter cart name" type="text" data-bind="value: currentCartName" />
+                    <input type="submit" value="Add" />
+                    <a data-role="button" data-inline="true" data-bind="click: saveCart" data-icon="check" data-iconpos="left">
+                        Save
+                    </a>
             </div>
-            <a data-role="button" data-inline="true" data-bind="click: saveCart" data-icon="check" data-iconpos="left">
-                Save
-            </a>
 <!--            <a href="#"
                 data-role="button"
                 data-inline="true"
@@ -199,9 +198,17 @@
         <div data-role="header"
             data-position="fixed">
             <h1>Delete Cart</h1>
-            <a href="#home"
-                data-icon="home"
-                data-iconpos="notext">Home</a>
+            <a 
+                data-role="button" 
+                data-direction="reverse" 
+                data-rel="back" 
+                data-icon="back" 
+                data-iconpos="left" 
+                class="ui-btn-left"
+                href="#carts"
+                >
+                Back
+            </a>
             <a href="#info"
                 data-icon="info"
                 data-iconpos="notext"
@@ -229,9 +236,17 @@
         <div data-role="header"
             data-position="fixed">
             <h1>Cart Items</h1>
-            <a href="#home"
-                data-icon="home"
-                data-iconpos="notext">Home</a>
+            <a 
+                data-role="button" 
+                data-direction="reverse" 
+                data-rel="back" 
+                data-icon="back" 
+                data-iconpos="left" 
+                class="ui-btn-left"
+                href="#carts"
+                >
+                Back
+            </a>
             <a href="#info"
                 data-icon="info"
                 data-iconpos="notext"
@@ -290,9 +305,17 @@
         <div data-role="header"
             data-position="fixed">
             <h1>Add Cart Item</h1>
-            <a href="#home"
-                data-icon="home"
-                data-iconpos="notext">Home</a>
+            <a 
+                data-role="button" 
+                data-direction="reverse" 
+                data-rel="back" 
+                data-icon="back" 
+                data-iconpos="left" 
+                class="ui-btn-left"
+                href="#carts"
+                >
+                Back
+            </a>
             <a href="#info"
                 data-icon="info"
                 data-iconpos="notext"

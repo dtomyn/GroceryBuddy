@@ -75,73 +75,57 @@ $(function () {
     var shoppingCartViewModel = (function () {
         var self = this;
 
-        var
-            carts = ko.observableArray([]),
-            selectedCart = ko.observable(),
-            availableCategories = ko.observableArray([]),
-            availableMeasurements = ko.observableArray([]),
+        self.carts = ko.observableArray([]);
+        
+        //TODO... the whole "selectedCart" thing was buggy for me so now resort to individual field
+        self.currentCartId = ko.observable();
+        self.currentCartName = ko.observable();
 
-            getCarts = function () {
-                carts.push(new GroceryCart(++shoppingCartId, "Shopping Cart 1"));
-                carts.push(new GroceryCart(++shoppingCartId, "Shopping Cart 2"));
-            }
-            ,
-            getCategories = function () {
-                availableCategories.push(new Category("", "Choose One...", ""));
-                availableCategories.push(new Category("P", "Produce", "TODO"));
-                availableCategories.push(new Category("D", "Dairy", "TODO"));
-                availableCategories.push(new Category("JF", "Junk Food", "TODO"));
-            }
-            ,
-            getMeasurements = function () {
-                availableMeasurements.push(new Measurement("", "Choose One...", ""));
-                availableMeasurements.push(new Measurement("G", "Grams", "TODO"));
-                availableMeasurements.push(new Measurement("KG", "KG", "TODO"));
-                availableMeasurements.push(new Measurement("ML", "Milliliters", "TODO"));
-                availableMeasurements.push(new Measurement("L", "Liters", "TODO"));
-            }
-            //,
-            //removeCart = function (cart) { self.carts.remove(cart) }
-            ,
-            startAddCart = function () {
-                var newCart = new GroceryCart(++shoppingCartId, "Enter name");
-                //self.view.AddItem(newItem);
-                selectedCart(newCart);
-                $.mobile.changePage("#addCartPage");
-            }
-            , 
-            saveCart = function () {
-                //not ideal at all... but
-//                var newItem = new GroceryCart(selectedCart.id, selectedCart.name);
-                carts.push(selectedCart);
-                $.mobile.changePage("#carts");
-            }
-        //            ,
-        //            selectCart = function () {
-        //                $.mobile.changePage("#cartItems");
-        //            }
-        ;
+        self.availableCategories = ko.observableArray([]);
+        self.availableMeasurements = ko.observableArray([]);
+        
+        self.getCarts = function () {
+            carts.push(new GroceryCart(++shoppingCartId, "Shopping Cart 1"));
+            carts.push(new GroceryCart(++shoppingCartId, "Shopping Cart 2"));
+        };
+
+        self.getCategories = function () {
+            availableCategories.push(new Category("", "Choose One...", ""));
+            availableCategories.push(new Category("P", "Produce", "TODO"));
+            availableCategories.push(new Category("D", "Dairy", "TODO"));
+            availableCategories.push(new Category("JF", "Junk Food", "TODO"));
+        };
+
+        self.getMeasurements = function () {
+            availableMeasurements.push(new Measurement("", "Choose One...", ""));
+            availableMeasurements.push(new Measurement("G", "Grams", "TODO"));
+            availableMeasurements.push(new Measurement("KG", "KG", "TODO"));
+            availableMeasurements.push(new Measurement("ML", "Milliliters", "TODO"));
+            availableMeasurements.push(new Measurement("L", "Liters", "TODO"));
+        };
+
+        self.startAddCart = function () {
+            currentCartId(++shoppingCartId);
+            currentCartName("");
+            $.mobile.changePage("#addCartPage");
+        };
+
+        self.saveCart = function () {
+            var gc = new GroceryCart(currentCartId(), currentCartName());
+            carts.push(gc);
+            currentCartId("");
+            currentCartName("");
+            //$('#theCartList').listview('refresh');
+            $.mobile.changePage("#carts");
+        };
 
         // Operations
         //self.addCart = function () { self.carts.push(new GroceryCart()) };
         //self.removeCart = function (cart) { self.carts.remove(cart) };
 
-        getCarts();
-        getCategories();
-        getMeasurements();
-
-        return {
-            carts: carts
-            , selectedCart: selectedCart
-            , availableCategories: availableCategories
-            , availableMeasurements: availableMeasurements
-            //, removeCart: removeCart
-            //, addCart: addCart
-            //            , selectCart: selectCart
-            , startAddCart: startAddCart
-            , saveCart: saveCart
-            //, removeCart: removeCart
-        };
+        self.getCarts();
+        self.getCategories();
+        self.getMeasurements();
     })();
 
     ko.applyBindings(shoppingCartViewModel);
