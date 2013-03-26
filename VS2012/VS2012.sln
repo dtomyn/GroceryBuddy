@@ -67,6 +67,26 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Ex_Files_jQuery_Mobile_EssT
 		VWDPort = "50514"
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BarcodeDemo-master", "..\..\..\..\Downloads\BarcodeDemo-master\BarcodeDemo-master\", "{E0873EEC-653F-47B2-B79B-46BBD8B94ACA}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/BarcodeDemo-master"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\Downloads\BarcodeDemo-master\BarcodeDemo-master\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\BarcodeDemo-master\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/BarcodeDemo-master"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\Downloads\BarcodeDemo-master\BarcodeDemo-master\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\BarcodeDemo-master\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "53234"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +109,10 @@ Global
 		{FE9BB246-56CB-4CA0-A776-8453C688FB54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE9BB246-56CB-4CA0-A776-8453C688FB54}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{FE9BB246-56CB-4CA0-A776-8453C688FB54}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{E0873EEC-653F-47B2-B79B-46BBD8B94ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0873EEC-653F-47B2-B79B-46BBD8B94ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0873EEC-653F-47B2-B79B-46BBD8B94ACA}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0873EEC-653F-47B2-B79B-46BBD8B94ACA}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
