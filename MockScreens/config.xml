@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.phonegap.hello-world"
+        id        = "ca.solvera.grocery-buddy"
         version   = "2.0.0">
-    <name>Scanner Demo</name>
+    <name>Grocery Buddy</name>
 
     <description>
-        Scans barcodes.
+        HTML5 hybrid app
     </description>
 
-    <author href="http://phonegap.com" email="support@phonegap.com">
-        PhoneGap Team
+    <author href="http://www.solvera.ca" email="darek.tomyn@solvera.ca">
+        Darek Tomyn
     </author>
 
     <gap:plugin name="ChildBrowser"/>
