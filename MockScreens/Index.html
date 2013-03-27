@@ -88,7 +88,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div>There are <em data-bind="text: numberOfItems()"></em>&nbsp;items in this cart</div>
+                        <div>There are <em data-bind="text: numberOfItems"></em>&nbsp;items in this cart</div>
                     </li>
                 </ul>
                 <a data-bind="click: startAddCart"> 
@@ -152,11 +152,10 @@
 
         <div data-role="content">
             <div>
-                <label id="currentCartId"></label>
                 <label for="currentCartName">
                     Cart name
                 </label>
-                <input id="currentCartName" placeholder="Enter cart name" />
+                <input id="currentCartName" placeholder="Enter cart name" type="text" />
                 <a data-role="button" data-inline="true" data-bind="click: saveCart" data-icon="check" data-iconpos="left">Save
                 </a>
             </div>

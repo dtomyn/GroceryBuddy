@@ -7,6 +7,14 @@
 /// <reference path="Measurement.js" />
 
 $(function () {
+    $("#addCartPage").on("pageshow", function (e) {
+        $('#currentCartName').focus();
+    });
+
+    $("#addCartItem").on("pageshow", function (e) {
+        $('#itemName').focus();
+    });
+
     var shoppingCartId = 0;
 
     // Class to represent a category
@@ -34,16 +42,16 @@ $(function () {
         var self = this;
         self.id = id;
         self.name = ko.observable(name);
-//        self.numberOfItems = numberOfItems;
+        self.numberOfItems = 0;
 
         self.cartItems = ko.observableArray([]);
 
         ////TODO... I realize there is probably a MUCH more efficient way of doing this!
-        self.numberOfItems = ko.computed(function () {
-            var total = 0;
-            $.each(self.cartItems(), function () { total += 1 })
-            return total;
-        });
+        //self.numberOfItems = ko.computed(function () {
+        //    var total = 0;
+        //    //$.each(self.cartItems(), function () { total += 1; })
+        //    return total;
+        //});
 
         //self.addLine = function () { self.cartItems.push(new CartItem()) };
         //self.removeLine = function (item) { self.cartItems.remove(item) };
@@ -60,7 +68,7 @@ $(function () {
     };
 
     // Class to represent an item in a cart
-    var CartItem = function ( name, category, numberOfPieces, size, measurement) {
+    var CartItem = function (name, category, numberOfPieces, size, measurement) {
         var self = this;
         self.name = ko.observable(name);
         self.category = ko.observable(category);
@@ -72,69 +80,73 @@ $(function () {
     };
 
     // Overall view model for the application
-    var shoppingCartViewModel = (function () {
+    var ShoppingCartViewModel = function () {
         var self = this;
 
-        self.carts = ko.observableArray([]);
-        
-        //TODO... the whole "selectedCart" thing was buggy for me so now resort to individual field
-        self.currentCartId = ko.observable();
-        self.currentCartName = ko.observable();
+        var
+            carts = ko.observableArray([])
+            //, currentCartId = ko.observable();
+            //, currentCartName = ko.observable();
+            , availableCategories = ko.observableArray([])
+            , availableMeasurements = ko.observableArray([])
+            , getCarts = function () {
+                carts.push(new GroceryCart(++shoppingCartId, "Shopping Cart 1"));
+                carts.push(new GroceryCart(++shoppingCartId, "Shopping Cart 2"));
+            }
+            , getCategories = function () {
+                availableCategories.push(new Category("", "Choose One...", ""));
+                availableCategories.push(new Category("P", "Produce", "TODO"));
+                availableCategories.push(new Category("D", "Dairy", "TODO"));
+                availableCategories.push(new Category("JF", "Junk Food", "TODO"));
+            }
+            , getMeasurements = function () {
+                availableMeasurements.push(new Measurement("", "Choose One...", ""));
+                availableMeasurements.push(new Measurement("G", "Grams", "TODO"));
+                availableMeasurements.push(new Measurement("KG", "KG", "TODO"));
+                availableMeasurements.push(new Measurement("ML", "Milliliters", "TODO"));
+                availableMeasurements.push(new Measurement("L", "Liters", "TODO"));
+            }
+            , startAddCart = function () {
+                shoppingCartId++;
+                $('#currentCartId').val(shoppingCartId);
+                $('#currentCartName').val('Cart ' + shoppingCartId.toString());
+                $.mobile.changePage("#addCartPage");
+                $('#addCartPage').trigger('pagecreate');
+                $('#currentCartName').removeAttr("disabled").focus();
+            }
+            , saveCart = function () {
+                var gc = new GroceryCart($('#currentCartId').val(), $('#currentCartName').val());
+                carts.push(gc);
+                $('#currentCartName').val('');
+                $('#currentCartId').val('');
+                //$('#theCartList').listview('refresh');
+                $.mobile.changePage("#carts");
+            }
+            , saveCartItem = function () {
+                var ci = new CartItem($('#itemName').val(), $('#itemCategory').val(), $('#itemNumberOfPieces').val(), $('#itemSize').val(), $('#itemMeasurement').val());
+                alert('want to add ' + ci.category);
+                $.mobile.changePage("#cartItems");
+            };
 
-        self.availableCategories = ko.observableArray([]);
-        self.availableMeasurements = ko.observableArray([]);
-        
-        self.getCarts = function () {
-            carts.push(new GroceryCart(++shoppingCartId, "Shopping Cart 1"));
-            carts.push(new GroceryCart(++shoppingCartId, "Shopping Cart 2"));
+        getCarts();
+        getCategories();
+        getMeasurements();
+
+        return {
+            carts: carts
+            , availableCategories: availableCategories
+            , availableMeasurements: availableMeasurements
+            , getCarts: getCarts
+            , getCategories: getCategories
+            , getMeasurements: getMeasurements
+            , startAddCart: startAddCart
+            , startAddCart: startAddCart
+            , saveCart: saveCart
+            , saveCartItem: saveCartItem
         };
+    };
 
-        self.getCategories = function () {
-            availableCategories.push(new Category("", "Choose One...", ""));
-            availableCategories.push(new Category("P", "Produce", "TODO"));
-            availableCategories.push(new Category("D", "Dairy", "TODO"));
-            availableCategories.push(new Category("JF", "Junk Food", "TODO"));
-        };
-
-        self.getMeasurements = function () {
-            availableMeasurements.push(new Measurement("", "Choose One...", ""));
-            availableMeasurements.push(new Measurement("G", "Grams", "TODO"));
-            availableMeasurements.push(new Measurement("KG", "KG", "TODO"));
-            availableMeasurements.push(new Measurement("ML", "Milliliters", "TODO"));
-            availableMeasurements.push(new Measurement("L", "Liters", "TODO"));
-        };
-
-        self.startAddCart = function () {
-            alert('hi');
-            shoppingCartId++;
-            $('#currentCartId').val(shoppingCartId);
-            $('#currentCartName').val('Cart ' + shoppingCartId.toString());
-            $.mobile.changePage("#addCartPage");
-            $('#addCartPage').trigger('pagecreate');
-            $('#currentCartName').removeAttr("disabled").focus();
-        };
-
-        self.saveCart = function () {
-            var gc = new GroceryCart($('#currentCartId').val(), $('#currentCartName').val());
-            carts.push(gc);
-            $('#currentCartName').val('');
-            $('#currentCartId').val('');
-            //$('#theCartList').listview('refresh');
-            $.mobile.changePage("#carts");
-        };
-
-        self.saveCartItem = function () {
-            $.mobile.changePage("#cartItems");
-        };
-
-        // Operations
-        //self.addCart = function () { self.carts.push(new GroceryCart()) };
-        //self.removeCart = function (cart) { self.carts.remove(cart) };
-
-        self.getCarts();
-        self.getCategories();
-        self.getMeasurements();
-    })();
+    var shoppingCartViewModel = new ShoppingCartViewModel();
 
     ko.applyBindings(shoppingCartViewModel);
 
