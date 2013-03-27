@@ -68,17 +68,17 @@
 
         <div data-role="content">
             <div data-role="content">
-                <ul id="theCartList" data-bind="foreach: carts">
+                <ul id="theCartList" data-bind="foreach: carts" data-role="listview" data-inset="true" data-theme="c">
                     <li>
                         <strong data-bind="text: name" contenteditable="true"></strong>
                         <div class="ui-grid-b">
                             <div class="ui-block-a">
-                                <a data-role="button" data-inline="true" data-bind="click: show">
+                                <a data-inline="true" data-bind="click: show">
                                     <img src="Images/ShoppingCart.PNG" />
                                 </a>
                             </div>
                             <div class="ui-block-b">
-                                <a href="#">
+                                <a href="#" data-bind="click: $root.removeCart" data-theme="d">
                                     <img src="Images/Delete.PNG" />
                                 </a>
                             </div>
