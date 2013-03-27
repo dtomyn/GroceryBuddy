@@ -6,11 +6,13 @@
 
     <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        
+
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link href="Content/jquery.mobile.custom.min.css" rel="stylesheet" />
+    <link href="Content/jquery.mobile.custom.structure.min.css" rel="stylesheet" />
+    <link href="Content/jquery.mobile.custom.theme.min.css" rel="stylesheet" />
 
-    <link href="Content/jquery.mobile-1.3.0.min.css" rel="stylesheet" />
     <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script src="Scripts/jquery.mobile-1.3.0.min.js"></script>
     <script src="Scripts/knockout-2.2.1.js"></script>
@@ -22,7 +24,7 @@
     <!-- HOME SCREEN -->
     <div id="home"
         data-role="page"
-        data-theme="a"
+        data-theme="b"
         data-title="Grocery Buddy: Home">
         <div data-role="content">
             Welcome to Grocery Buddy!
@@ -46,10 +48,12 @@
     <!-- CARTS SCREEN -->
     <div id="carts"
         data-role="page"
+        data-theme="b"
         data-title="Grocery Buddy: Carts">
 
         <!-- STANDARD HEADER -->
         <div data-role="header"
+            data-theme="b"
             data-position="fixed">
             <h1>Carts</h1>
             <a href="#home"
@@ -71,7 +75,8 @@
                             <div class="ui-block-a">
                                 <a href="#cartItems" data-transition="flip">
                                     <img src="Images/ShoppingCart.PNG" />
-                                </a></div>
+                                </a>
+                            </div>
                             <div class="ui-block-b">
                                 <a href="#">
                                     <img src="Images/Delete.PNG" />
@@ -96,6 +101,7 @@
 
         <!-- STANDARD FOOTER -->
         <div data-role="footer"
+            data-theme="b"
             data-position="fixed"
             data-id="vs_footer">
             <div data-role="navbar">
@@ -108,7 +114,7 @@
                         data-icon="vs_cart">Carts</a></li>
                     <li><a href="#config"
                         data-role="button"
-                        data-icon="vs_config">Config</a></li>
+                        data-icon="gear">Config</a></li>
                 </ul>
             </div>
         </div>
@@ -120,22 +126,22 @@
     <!-- ADD A CART -->
     <div id="addCartPage"
         data-role="page"
+        data-theme="b"
         data-title="Add Cart">
 
         <!-- STANDARD HEADER -->
         <div data-role="header"
+            data-theme="b"
             data-position="fixed">
             <h1>Add Cart</h1>
-            <a 
-                data-role="button" 
-                data-direction="reverse" 
-                data-rel="back" 
-                data-icon="back" 
-                data-iconpos="left" 
+            <a
+                data-role="button"
+                data-direction="reverse"
+                data-rel="back"
+                data-icon="back"
+                data-iconpos="left"
                 class="ui-btn-left"
-                href="#carts"
-                >
-                Back
+                href="#carts">Back
             </a>
             <a href="#info"
                 data-icon="info"
@@ -146,29 +152,20 @@
 
         <div data-role="content">
             <div>
-                    <label data-bind="text: currentCartId"></label>
-                    <label for="cartName">
-                        Cart name
-                    </label>
-                    <input name="cartName" id="cartName" placeholder="Enter cart name" type="text" data-bind="value: currentCartName" />
-                    <input type="submit" value="Add" />
-                    <a data-role="button" data-inline="true" data-bind="click: saveCart" data-icon="check" data-iconpos="left">
-                        Save
-                    </a>
+                <label data-bind="text: currentCartId"></label>
+                <label for="cartName">
+                    Cart name
+                </label>
+                <input name="cartName" id="cartName" placeholder="Enter cart name" type="text" data-bind="value: currentCartName" />
+                <a data-role="button" data-inline="true" data-bind="click: saveCart" data-icon="check" data-iconpos="left">Save
+                </a>
             </div>
-<!--            <a href="#"
-                data-role="button"
-                data-inline="true"
-                data-rel="back">Cancel</a>
-            <a href="#home"
-                data-role="button"
-                data-inline="true"
-                data-bind="click: saveCart">Save</a>-->
         </div>
 
         <!-- STANDARD FOOTER -->
         <div data-role="footer"
             data-position="fixed"
+            data-theme="b"
             data-id="vs_footer">
             <div data-role="navbar">
                 <ul>
@@ -180,7 +177,7 @@
                         data-icon="vs_cart">Carts</a></li>
                     <li><a href="#config"
                         data-role="button"
-                        data-icon="vs_config">Config</a></li>
+                        data-icon="gear">Config</a></li>
                 </ul>
             </div>
         </div>
@@ -189,63 +186,25 @@
     </div>
     <!-- /ADD A CART -->
 
-    <!--<!-- TODO: Delete a cart -->
-    <div id="Div1"
-        data-role="page"
-        data-title="Add Cart">
-
-        <!-- STANDARD HEADER -->
-        <div data-role="header"
-            data-position="fixed">
-            <h1>Delete Cart</h1>
-            <a 
-                data-role="button" 
-                data-direction="reverse" 
-                data-rel="back" 
-                data-icon="back" 
-                data-iconpos="left" 
-                class="ui-btn-left"
-                href="#carts"
-                >
-                Back
-            </a>
-            <a href="#info"
-                data-icon="info"
-                data-iconpos="notext"
-                data-rel="dialog">Info</a>
-        </div>
-        <!-- /STANDARD HEADER -->
-
-        <div data-role="content">
-            <div>
-                <label for="addCartName">Name:</label>
-                <input id="Text1" type="text" /></div>
-            <div>
-                <label for="addCartReminder">Reminder:</label>
-                <input id="Date1" type="date" /></div>
-        </div>
-    </div>
-    <!-- TODO: Delete a cart -->
-
     <!-- CART ITEMS SCREEN -->
     <div id="cartItems"
+        data-theme="b"
         data-role="page"
         data-title="Grocery Buddy: Cart Items">
 
         <!-- STANDARD HEADER -->
         <div data-role="header"
+            data-theme="b"
             data-position="fixed">
             <h1>Cart Items</h1>
-            <a 
-                data-role="button" 
-                data-direction="reverse" 
-                data-rel="back" 
-                data-icon="back" 
-                data-iconpos="left" 
+            <a
+                data-role="button"
+                data-direction="reverse"
+                data-rel="back"
+                data-icon="back"
+                data-iconpos="left"
                 class="ui-btn-left"
-                href="#carts"
-                >
-                Back
+                href="#carts">Back
             </a>
             <a href="#info"
                 data-icon="info"
@@ -255,26 +214,19 @@
         <!-- /STANDARD HEADER -->
 
         <div data-role="content">
-            <!-- NOTE: for now just using table's to layout screen... easy this way during mockups -->
-            <!-- TODO!!!!!! this is where will be using knockout -->
-            <div class="topOfPage">
-
-                <table>
-                    <tr>
-                        <td colspan="3">Need to find out how to do the fancy groupings...
-                        </td>
-                    </tr>
-                </table>
+            <div data-role="collapsible-set" data-theme="d">
+                <div data-role="collapsible">
+                    <h3>Section Header
+                    </h3>
+                </div>
             </div>
-            <p></p>
-            <p></p>
-            <div class="bottomOfPage">
-                <a href="#addCartItem" data-transition="flip">
-                    <img src="Images/Add.PNG" /></a>
-            </div>
+            <a data-role="button" href="#addCartItem" data-icon="arrow-r" data-iconpos="right" data-transition="flip">New
+            </a>
         </div>
+
         <!-- STANDARD FOOTER -->
         <div data-role="footer"
+            data-theme="b"
             data-position="fixed"
             data-id="vs_footer">
             <div data-role="navbar">
@@ -287,7 +239,7 @@
                         data-icon="vs_cart">Carts</a></li>
                     <li><a href="#config"
                         data-role="button"
-                        data-icon="vs_config">Config</a></li>
+                        data-icon="gear">Config</a></li>
                 </ul>
             </div>
         </div>
@@ -299,22 +251,22 @@
     <!-- ADD A CART ITEM -->
     <div id="addCartItem"
         data-role="page"
+        data-theme="b"
         data-title="Add Cart Item">
 
         <!-- STANDARD HEADER -->
         <div data-role="header"
+            data-theme="b"
             data-position="fixed">
             <h1>Add Cart Item</h1>
-            <a 
-                data-role="button" 
-                data-direction="reverse" 
-                data-rel="back" 
-                data-icon="back" 
-                data-iconpos="left" 
+            <a
+                data-role="button"
+                data-direction="reverse"
+                data-rel="back"
+                data-icon="back"
+                data-iconpos="left"
                 class="ui-btn-left"
-                href="#carts"
-                >
-                Back
+                href="#carts">Back
             </a>
             <a href="#info"
                 data-icon="info"
@@ -326,7 +278,8 @@
         <div data-role="content">
             <div>
                 <label for="itemName">Name:</label>
-                <input id="itemName" type="text" /></div>
+                <input id="itemName" type="text" />
+            </div>
             <div>
                 <label for="select1">Category:</label>
                 <select name="select1" id="select1" data-native-menu="true"
@@ -335,10 +288,12 @@
             </div>
             <div>
                 <label for="addCartName"># of pieces:</label>
-                <input id="Text3" type="number" /></div>
+                <input id="Text3" type="number" />
+            </div>
             <div>
                 <label for="addCartName">Size of item:</label>
-                <input id="Number1" type="number" /></div>
+                <input id="Number1" type="number" />
+            </div>
             <div>
                 <label for="select1">Measurement:</label>
                 <label for="select1">Category:</label>
@@ -350,6 +305,7 @@
 
         <!-- STANDARD FOOTER -->
         <div data-role="footer"
+            data-theme="b"
             data-position="fixed"
             data-id="vs_footer">
             <div data-role="navbar">
@@ -362,7 +318,7 @@
                         data-icon="vs_cart">Carts</a></li>
                     <li><a href="#config"
                         data-role="button"
-                        data-icon="vs_config">Config</a></li>
+                        data-icon="gear">Config</a></li>
                 </ul>
             </div>
         </div>
@@ -375,10 +331,12 @@
     <!-- config -->
     <div id="config"
         data-role="page"
+        data-theme="b"
         data-title="Config">
 
         <!-- STANDARD HEADER -->
         <div data-role="header"
+            data-theme="b"
             data-position="fixed">
             <h1>Config</h1>
             <a href="#home"
@@ -402,6 +360,7 @@
 
         <!-- STANDARD FOOTER -->
         <div data-role="footer"
+            data-theme="b"
             data-position="fixed"
             data-id="vs_footer">
             <div data-role="navbar">
@@ -414,7 +373,7 @@
                         data-icon="vs_cart">Carts</a></li>
                     <li><a href="#config"
                         data-role="button"
-                        data-icon="vs_config">Config</a></li>
+                        data-icon="gear">Config</a></li>
                 </ul>
             </div>
         </div>
@@ -424,11 +383,15 @@
     <!-- /config -->
 
     <!-- ABOUT / INFO PAGE -->
-    <div data-role="page" id="info">
-        <div data-role="header">
+    <div data-role="page"
+        data-theme="b"
+        id="info">
+        <div data-role="header"
+            data-theme="b">
             <h1>About</h1>
         </div>
-        <div data-role="content">
+        <div data-role="content"
+            data-theme="b">
             <p>Grocery Buddy is an application developed by the Solvera UltraHackathon Team comprised of: Darek Tomyn, Tom Yarnton and Jayper Sanchez</p>
             <p>
                 The application attempts to show the following features:
