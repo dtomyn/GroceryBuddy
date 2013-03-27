@@ -42,27 +42,31 @@ $(function () {
         var self = this;
         self.id = id;
         self.name = ko.observable(name);
-        self.numberOfItems = 0;
 
         self.cartItems = ko.observableArray([]);
 
         ////TODO... I realize there is probably a MUCH more efficient way of doing this!
-        //self.numberOfItems = ko.computed(function () {
-        //    var total = 0;
-        //    //$.each(self.cartItems(), function () { total += 1; })
-        //    return total;
-        //});
+        self.numberOfItems = ko.computed(function () {
+            var total = 0;
+            $.each(self.cartItems(), function () { total += 1; })
+            return total;
+        });
 
-        //self.addLine = function () { self.cartItems.push(new CartItem()) };
-        //self.removeLine = function (item) { self.cartItems.remove(item) };
+        self.addItem = function (item) {
+            self.cartItems.push(item)
+        };
+
+        self.removeItem = function (item) {
+            self.cartItems.remove(item)
+        };
 
         //TODO: reminder
 
         //TODO: this doesn't seem quite right...
-        //self.show = function () {
-        //    shoppingCartViewModel.selectedCart = self;
-        //    $.mobile.changePage("#cartItems");
-        //};
+        self.show = function () {
+            shoppingCartViewModel.selectedCart = self;
+            $.mobile.changePage("#cartItems");
+        };
 
         return self;
     };
@@ -85,6 +89,7 @@ $(function () {
 
         var
             carts = ko.observableArray([])
+            , selectedCart = ko.observable()
             //, currentCartId = ko.observable();
             //, currentCartName = ko.observable();
             , availableCategories = ko.observableArray([])
@@ -95,16 +100,16 @@ $(function () {
             }
             , getCategories = function () {
                 availableCategories.push(new Category("", "Choose One...", ""));
-                availableCategories.push(new Category("P", "Produce", "TODO"));
-                availableCategories.push(new Category("D", "Dairy", "TODO"));
-                availableCategories.push(new Category("JF", "Junk Food", "TODO"));
+                availableCategories.push(new Category("Produce", "Produce", "TODO"));
+                availableCategories.push(new Category("Dairy", "Dairy", "TODO"));
+                availableCategories.push(new Category("Junk Food", "Junk Food", "TODO"));
             }
             , getMeasurements = function () {
                 availableMeasurements.push(new Measurement("", "Choose One...", ""));
-                availableMeasurements.push(new Measurement("G", "Grams", "TODO"));
+                availableMeasurements.push(new Measurement("Grams", "Grams", "TODO"));
                 availableMeasurements.push(new Measurement("KG", "KG", "TODO"));
-                availableMeasurements.push(new Measurement("ML", "Milliliters", "TODO"));
-                availableMeasurements.push(new Measurement("L", "Liters", "TODO"));
+                availableMeasurements.push(new Measurement("ML", "ML", "TODO"));
+                availableMeasurements.push(new Measurement("L", "L", "TODO"));
             }
             , startAddCart = function () {
                 shoppingCartId++;
@@ -124,7 +129,7 @@ $(function () {
             }
             , saveCartItem = function () {
                 var ci = new CartItem($('#itemName').val(), $('#itemCategory').val(), $('#itemNumberOfPieces').val(), $('#itemSize').val(), $('#itemMeasurement').val());
-                alert('want to add ' + ci.category);
+                console.log('want to add ' + ci.category());
                 $.mobile.changePage("#cartItems");
             };
 
@@ -143,6 +148,7 @@ $(function () {
             , startAddCart: startAddCart
             , saveCart: saveCart
             , saveCartItem: saveCartItem
+            , selectedCart: selectedCart
         };
     };
 
