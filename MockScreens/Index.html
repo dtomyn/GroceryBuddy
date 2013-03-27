@@ -91,7 +91,7 @@
                         <div>There are <em data-bind="text: numberOfItems()"></em>&nbsp;items in this cart</div>
                     </li>
                 </ul>
-                <a data-bind="click: startAddCart">
+                <a data-bind="click: startAddCart"> 
                     <img src="Images/NewShoppingCart.PNG" />
                 </a>
             </div>
@@ -152,11 +152,11 @@
 
         <div data-role="content">
             <div>
-                <label data-bind="text: currentCartId"></label>
-                <label for="cartName">
+                <label id="currentCartId"></label>
+                <label for="currentCartName">
                     Cart name
                 </label>
-                <input name="cartName" id="cartName" placeholder="Enter cart name" type="text" data-bind="value: currentCartName" />
+                <input id="currentCartName" placeholder="Enter cart name" />
                 <a data-role="button" data-inline="true" data-bind="click: saveCart" data-icon="check" data-iconpos="left">Save
                 </a>
             </div>
@@ -281,26 +281,28 @@
                 <input id="itemName" type="text" />
             </div>
             <div>
-                <label for="select1">Category:</label>
-                <select name="select1" id="select1" data-native-menu="true"
+                <label for="itemCategory">Category:</label>
+                <select name="itemCategory" id="itemCategory" data-native-menu="true"
                     data-bind="options: availableCategories, optionsText: 'name', optionsValue: 'value'">
                 </select>
             </div>
             <div>
-                <label for="addCartName"># of pieces:</label>
-                <input id="Text3" type="number" />
+                <label for="itemNumberOfPieces"># of pieces:</label>
+                <input id="itemNumberOfPieces" type="number" />
             </div>
             <div>
-                <label for="addCartName">Size of item:</label>
-                <input id="Number1" type="number" />
+                <label for="itemSize">Size of item:</label>
+                <input id="itemSize" type="number" />
             </div>
             <div>
-                <label for="select1">Measurement:</label>
-                <label for="select1">Category:</label>
-                <select name="select1" id="select3" data-native-menu="true"
+                <label for="itemMeasurement">Measurement:</label>
+                <select name="itemMeasurement" id="itemMeasurement" data-native-menu="true"
                     data-bind="options: availableMeasurements, optionsText: 'name', optionsValue: 'value'">
                 </select>
             </div>
+
+            <a data-role="button" data-inline="true" data-bind="click: saveCartItem" data-icon="check" data-iconpos="left">Save
+            </a>
         </div>
 
         <!-- STANDARD FOOTER -->

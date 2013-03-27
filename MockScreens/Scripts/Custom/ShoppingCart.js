@@ -105,18 +105,26 @@ $(function () {
         };
 
         self.startAddCart = function () {
-            currentCartId(++shoppingCartId);
-            currentCartName("");
+            alert('hi');
+            shoppingCartId++;
+            $('#currentCartId').val(shoppingCartId);
+            $('#currentCartName').val('Cart ' + shoppingCartId.toString());
             $.mobile.changePage("#addCartPage");
+            $('#addCartPage').trigger('pagecreate');
+            $('#currentCartName').removeAttr("disabled").focus();
         };
 
         self.saveCart = function () {
-            var gc = new GroceryCart(currentCartId(), currentCartName());
+            var gc = new GroceryCart($('#currentCartId').val(), $('#currentCartName').val());
             carts.push(gc);
-            currentCartId("");
-            currentCartName("");
+            $('#currentCartName').val('');
+            $('#currentCartId').val('');
             //$('#theCartList').listview('refresh');
             $.mobile.changePage("#carts");
+        };
+
+        self.saveCartItem = function () {
+            $.mobile.changePage("#cartItems");
         };
 
         // Operations
@@ -130,5 +138,5 @@ $(function () {
 
     ko.applyBindings(shoppingCartViewModel);
 
-    $.mobile.defaultPageTransition = "slide";
+    //$.mobile.defaultPageTransition = "slide";
 });
