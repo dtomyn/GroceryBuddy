@@ -73,7 +73,7 @@
                         <strong data-bind="text: name" contenteditable="true"></strong>
                         <div class="ui-grid-b">
                             <div class="ui-block-a">
-                                <a data-inline="true" data-bind="click: show">
+                                <a href="#" data-bind="click: $root.showCart">
                                     <img src="Images/ShoppingCart.PNG" />
                                 </a>
                             </div>
@@ -212,7 +212,8 @@
         </div>
         <!-- /STANDARD HEADER -->
 
-        <div data-role="content">
+        <div data-role="content" data-bind="with: selectedCart">
+            <strong data-bind="text: name" contenteditable="true"></strong>
             <div data-role="collapsible-set" data-theme="d">
                 <div data-role="collapsible">
                     <h3>Section Header

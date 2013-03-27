@@ -62,12 +62,6 @@ $(function () {
 
         //TODO: reminder
 
-        //TODO: this doesn't seem quite right...
-        self.show = function () {
-            shoppingCartViewModel.selectedCart = self;
-            $.mobile.changePage("#cartItems");
-        };
-
         return self;
     };
 
@@ -133,9 +127,15 @@ $(function () {
                 $.mobile.changePage("#cartItems");
             }
             , removeCart = function (cart) {
-                alert('Going to try to remove the following cart: ' + cart.name() + ' that currently has ' + cart.numberOfItems() + ' number of items');
-                carts.remove(cart);
-                $('#theCartList').listview("refresh");
+                //TODO... better confirm needed!
+                if (confirm('Are you sure you want to remove the following cart: ' + cart.name() + ' that currently has ' + cart.numberOfItems() + ' number of items?')) {
+                    carts.remove(cart);
+                    $('#theCartList').listview("refresh");
+                }
+            }
+            , showCart = function (cart) {
+                selectedCart(cart);
+                $.mobile.changePage("#cartItems");
             }
         ;
 
@@ -156,6 +156,7 @@ $(function () {
             , saveCartItem: saveCartItem
             , selectedCart: selectedCart
             , removeCart: removeCart
+            , showCart: showCart
         };
     };
 
