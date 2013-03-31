@@ -1,17 +1,21 @@
 ﻿/// <reference path="_references.js" />
 
 $(function () {
-    // When the add cart page shows, set focus to the name field
+
+    //NOTE: The below 2 "focus" functions could have been put in the applicable "navigate" methods... done below
+    //just to show an alternative method
+
+    /// When the add cart page shows, set focus to the name field
     $("#addCartPage").on("pageshow", function (e) {
         $('#currentCartName').focus();
     });
 
     // When the add item page shows, set focus on the name field
-    $("#addCartItem").on("pageshow", function (e) {
+    $("#addCartItemPage").on("pageshow", function (e) {
         $('#itemName').focus();
     });
 
-    // Class to represent a category
+    /// Class to represent a category
     var Category = function (value, name, icon) {
         var self = this;
 
@@ -24,7 +28,7 @@ $(function () {
         return self;
     };
 
-    // Class to represent a measurement
+    /// Class to represent a measurement
     var Measurement = function (value, name, icon) {
         var self = this;
 
@@ -37,20 +41,23 @@ $(function () {
         return self;
     };
 
-    // Class to represent a grocery cart
+    /// Class to represent a grocery cart
     var GroceryCart = function ( name) {
         var self = this;
 
 // #region Properties
-        // Cart has a name...
-        self.name = ko.observable(name);
-        // Cart has items...
+        /// Cart has a name...
+        self.name = ko.observable(name).extend({ minLength: 2, maxLength: 10 });
+        /// Cart has items...
         self.cartItems = ko.observableArray([]);
-        //TODO: reminder??
+        //TODO: reminder?? use this for validation .extend({ date: true });
+
+        //self.dirtyFlag = new ko.DirtyFlag([
+        //    self.name)];
 // #endregion Properties
 
 // #region Computed properties
-        // Make english wording better for number of items in a cart
+        /// Make english wording better for number of items in a cart
         self.numberOfItemsDisplay = ko.computed(function () {
             if (self.cartItems().length == 0) {
                 return 'There are no items in the cart';
@@ -66,6 +73,7 @@ $(function () {
         // Simply returns the number of items
         self.numberOfItems = ko.computed(function () {
             return self.cartItems().length;
+            //NOTE: the below shows how could have used a "foreach" method too
             //var total = 0;
             //$.each(self.cartItems(), function () { total += 1; })
             //return total;
@@ -85,16 +93,19 @@ $(function () {
         return self;
     };
 
-    // Class to represent an item in a cart
+    /// Class to represent an item in a cart
     var CartItem = function (name, category, numberOfPieces, size, measurement) {
         var self = this;
 
 // #region Properties
-        self.name = ko.observable(name);
-        self.category = ko.observable(category);
-        self.numberOfPieces = ko.observable(numberOfPieces);
-        self.size = ko.observable(size);
-        self.measurement = ko.observable(measurement);
+        self.name = ko.observable(name).extend({ minLength: 2, maxLength: 10 });
+        //self.name = ko.observable(name).extend({ required: true });
+        self.category = ko.observable(category).extend({ required: true });
+        self.numberOfPieces = ko.observable(numberOfPieces).extend({ min: 1 });
+        //.extend({ number: true });
+        //.extend({ digit: true });
+        self.size = ko.observable(size).extend({ min: 1 });
+        self.measurement = ko.observable(measurement).extend({ required: true });
 // #endregion Properties
 
 // #region Computed properties
@@ -109,62 +120,70 @@ $(function () {
         return self;
     };
 
-    // Overall view model for the application
+    /// Overall view model for the application
     var ShoppingCartViewModel = function () {
         var self = this;
 
         var
 // #region Properties
-            // Main carts collection
+            /// Main carts collection
             carts = ko.observableArray([])
-            // Which shopping cart is currently selected
+            /// Used to store the currently selected shopping cart
             , selectedCart = ko.observable()
-            // A list of all available categories that may be selected when entering an item
+            /// A list of all available categories that may be selected when entering an item
             , availableCategories = ko.observableArray([])
-            // A list of all available measurements that may be selected when entering an item
+            /// A list of all available measurements that may be selected when entering an item
             , availableMeasurements = ko.observableArray([])
 // #endregion Properties
 
 // #region Operations
-            // Loads up carts collection with a couple of sample grocery carts
+            /// Loads up carts collection with a couple of sample grocery carts
             , getCarts = function () {
                 carts.push(new GroceryCart("Shopping Cart 1"));
                 carts.push(new GroceryCart("Shopping Cart 2"));
             }
-            // Loads up availableCategories collection with a few category types
+            /// Loads up availableCategories collection with a few category types
             , getCategories = function () {
-                availableCategories.push(new Category("", "Choose One...", ""));
+                //availableCategories.push(new Category("", "Choose One...", ""));
                 availableCategories.push(new Category("Produce", "Produce", "TODO"));
                 availableCategories.push(new Category("Dairy", "Dairy", "TODO"));
                 availableCategories.push(new Category("Junk Food", "Junk Food", "TODO"));
             }
-            // Loads up availableMeasurements collection with a few measurement types
+            /// Loads up availableMeasurements collection with a few measurement types
             , getMeasurements = function () {
-                availableMeasurements.push(new Measurement("", "Choose One...", ""));
+                //availableMeasurements.push(new Measurement("", "Choose One...", ""));
                 availableMeasurements.push(new Measurement("Grams", "Grams", "TODO"));
                 availableMeasurements.push(new Measurement("KG", "KG", "TODO"));
                 availableMeasurements.push(new Measurement("ML", "ML", "TODO"));
                 availableMeasurements.push(new Measurement("L", "L", "TODO"));
             }
-            // Called when want to start adding a new cart
+            /// Called when want to start adding a new cart
             , addCartBegin = function () {
                 $('#currentCartName').val('');
                 navigateToAddCartPage();
             }
-            // Cancels the save cart operation and navigates back to the main carts page
+            /// Cancels the save cart operation and navigates back to the main carts page
             , addCartCancel = function () {
                 $('#currentCartName').val('');
                 navigateToCartsPage();
             }
-            // Saves a cart to the carts collection and then navigates back to the main carts page
+            /// Saves a cart to the carts collection and then navigates back to the main carts page
             , addCartSave = function () {
                 var gc = new GroceryCart($('#currentCartName').val());
+                //TODO: need to figure out a way to get validation to work... I made a reference to knockout validation but not sure how to use properly yet
+                //gc.errors = ko.validation.group(gc);
+                //if (gc.errors().length == 0) {
+                //    alert('Thank you.');
+                //} else {
+                //    alert('Please check your submission.');
+                //    gc.errors.showAllMessages();
+                //}
                 carts.push(gc);
                 $('#currentCartName').val('');
                 navigateToCartsPage();
             }
 
-            // Called when want to start adding a new item into a cart
+            /// Called when want to start adding a new item into a cart
             , addCartItemBegin = function () {
                 $('#itemName').val('');
                 $('#itemCategory').val('');
@@ -173,61 +192,66 @@ $(function () {
                 $('#itemMeasurement').val('');
                 navigateToAddCartItemPage();
             }
-            // Saves a cart items to the currently selected cart
+            /// Saves a cart items to the currently selected cart
             , addCartItemSave = function () {
+                //TODO: better way to do this is to have an observable item on this page... for now using standard jQuery to get values
                 var ci = new CartItem($('#itemName').val(), $('#itemCategory').val(), $('#itemNumberOfPieces').val(), $('#itemSize').val(), $('#itemMeasurement').val());
-                alert('want to add ' + ci.category());
                 if (selectedCart() != null) {
                     selectedCart().addItem(ci);
                 }
                 navigateToCartItemsPage();
             }
-            // Removes the currently selected cart from the collection after confirming that want to delete it
+            /// Removes the currently selected cart from the collection after confirming that want to delete it
             , removeCart = function (cart) {
-                //TODO... better confirm needed!
+                //TODO... better confirm needed!... look at split listview
                 if (confirm('Are you sure you want to remove the following cart: ' + cart.name() + ' that currently has ' + cart.numberOfItems() + ' number of items?')) {
-                    carts.remove(cart);
+                    carts.destroy(cart);
+                    //carts.remove(cart);
                     $('#theCartList').listview("refresh");
                 }
             }
-            // Shows the contents of the cart
+            /// Shows the contents of the cart
             , viewCartBegin = function (cart) {
                 selectedCart(cart);
                 navigateToCartItemsPage();
             }
 
 // #region NAVIGATION operations
-            // Wraps up whatever needs to be done when navigating to main Carts page
+            ///Navigates to the "cartsPage". Wrapped to ensure jQuery mobile "redraws" screen correctly
             , navigateToCartsPage = function () {
                 $.mobile.changePage("#cartsPage");
                 $('#cartsPage').trigger('pagecreate');
                 $('#theCartList').listview('refresh');
             }
 
+            ///Navigates to the "addCartPage". Wrapped to ensure jQuery mobile "redraws" screen correctly
             , navigateToAddCartPage = function () {
                 $.mobile.changePage("#addCartPage");
                 $('#addCartPage').trigger('pagecreate');
             }
 
+            ///Navigates to the "cartItemsPage". Wrapped to ensure jQuery mobile "redraws" screen correctly
             , navigateToCartItemsPage = function () {
                 $.mobile.changePage("#cartItemsPage");
                 $('#cartItemsPage').trigger('pagecreate');
+                $('#theCartList').listview('refresh');
             }
 
+            ///Navigates to the "addCartItemPage". Wrapped to ensure jQuery mobile "redraws" screen correctly
             , navigateToAddCartItemPage = function () {
-                $.mobile.changePage("#addCartItem");
-                $('#addCartItem').trigger('pagecreate');
+                $.mobile.changePage("#addCartItemPage");
+                $('#addCartItemPage').trigger('pagecreate');
             }
 // #endregion NAVIGATION operations
 
 // #endregion Operations
         ;
 
-        // Make the call to initialize the carts
+        /// Make the call to initialize the carts
         getCarts();
-        // Make the call to initialize the categories
+        /// Make the call to initialize the categories
         getCategories();
-        // Make the call to initialize the measurements
+        /// Make the call to initialize the measurements
         getMeasurements();
 
         /* NOTE: if want to do the "best practice" of selectively determining what to expose, would do the below */
@@ -261,6 +285,18 @@ $(function () {
     };
 
     var shoppingCartViewModel = new ShoppingCartViewModel();
+
+    ko.validation.rules.pattern.message = 'Invalid.';
+
+    shoppingCartViewModel.errors = ko.validation.group(shoppingCartViewModel);
+
+    ko.validation.configure({
+        registerExtenders: true,
+        messagesOnModified: true,
+        insertMessages: true,
+        parseInputAttributes: true,
+        messageTemplate: null
+    });
 
     ko.applyBindings(shoppingCartViewModel);
 

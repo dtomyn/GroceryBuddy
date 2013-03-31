@@ -30,3 +30,5 @@
 	background-image: url("../../Images/Configuration_18.PNG");
 }
 
+.validationMessage { color: Red; }
+.customMessage { color: Orange; }        

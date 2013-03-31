@@ -20,6 +20,8 @@
     <script src="Scripts/knockout-2.2.1.js"></script> 
     <script src="Scripts/jquery.validate.min.js"></script>
     <script src="Scripts/modernizr-2.6.2.min.js"></script>
+    <!-- TODO: tried to get the knockout validation extension to work but so far not successful -->
+    <script src="Scripts/knockout.validation.js"></script>
     <script src="Scripts/Custom/Utils.js"></script>
     <link href="Content/Custom/AppStyles.css" rel="stylesheet" /> 
 
@@ -74,7 +76,7 @@
         <div data-role="content">
             <ul id="theCartList" data-bind="foreach: carts" data-role="listview" data-inset="true" data-theme="c">
                 <li>
-                    <strong data-bind="text: name" contenteditable="true"></strong>
+                    <strong data-bind="text: name, valueUpdate: 'afterkeydown'" contenteditable="true" required></strong>
                     <div class="ui-grid-b">
                         <div class="ui-block-a">
                             <a href="#" data-bind="click: $root.viewCartBegin">
@@ -157,7 +159,7 @@
                 <label for="currentCartName">
                     Cart name
                 </label>
-                <input id="currentCartName" placeholder="Enter cart name" type="text" />
+                <input id="currentCartName" placeholder="Enter cart name" type="text" required />
 <!--                <a data-role="button" data-inline="true" data-bind="click: addCartSave" data-icon="check" data-iconpos="left">Save</a>-->
                 <fieldset>
                     <div><button type="submit" data-theme="c" data-bind="click: addCartCancel">Cancel</button></div>
@@ -216,7 +218,7 @@
 
         <div id="cartAndItems" data-role="content" data-bind="with: selectedCart">
 
-            <strong data-bind="text: name" contenteditable="true"></strong>
+            <strong data-bind="text: name, valueUpdate: 'afterkeydown'" contenteditable="true" required></strong>
 <!--            <div data-role="collapsible-set" data-bind="foreach: cartItems" data-theme="d" id="collapsibleItemList">
                 <div data-role="collapsible"><h3 data-bind="text: category"></h3>
                     <p></p>
@@ -226,7 +228,7 @@
                 <li data-bind="text: displayValue"></li>
             </ul>
             <div>There are <em data-bind="text: numberOfItems"></em>&nbsp;items in this cart</div>
-            <a data-role="button" href="#addCartItem" data-icon="arrow-r" data-iconpos="right" data-transition="flip">New Item
+            <a data-role="button" href="#addCartItemPage" data-icon="arrow-r" data-iconpos="right" data-transition="flip">New Item
             </a>
         </div>
 
@@ -255,7 +257,7 @@
     <!-- /CART ITEMS SCREEN -->
 
     <!-- ADD A CART ITEM -->
-    <div id="addCartItem"
+    <div id="addCartItemPage"
         data-role="page"
         data-theme="b"
         data-title="Add Cart Item">
@@ -284,26 +286,26 @@
         <div data-role="content">
             <div>
                 <label for="itemName">Name:</label>
-                <input id="itemName" type="text" />
+                <input id="itemName" type="text" required />
             </div>
             <div>
                 <label for="itemCategory">Category:</label>
                 <select name="itemCategory" id="itemCategory" data-native-menu="true"
-                    data-bind="options: availableCategories, optionsText: 'name', optionsValue: 'value'">
+                    data-bind="options: availableCategories, optionsText: 'name', optionsValue: 'value', optionsCaption: 'Choose...'" required>
                 </select>
             </div>
             <div>
                 <label for="itemNumberOfPieces"># of pieces:</label>
-                <input id="itemNumberOfPieces" type="number" />
+                <input id="itemNumberOfPieces" type="number" required min="1" max="200" step="1" value="1" />
             </div>
             <div>
                 <label for="itemSize">Size of item:</label>
-                <input id="itemSize" type="number" />
+                <input id="itemSize" type="number" required min="1" max="200" step="1" value="1" />
             </div>
             <div>
                 <label for="itemMeasurement">Measurement:</label>
                 <select name="itemMeasurement" id="itemMeasurement" data-native-menu="true"
-                    data-bind="options: availableMeasurements, optionsText: 'name', optionsValue: 'value'">
+                    data-bind="options: availableMeasurements, optionsText: 'name', optionsValue: 'value', optionsCaption: 'Choose...'" required>
                 </select>
             </div>
         </div>
