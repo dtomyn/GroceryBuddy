@@ -215,10 +215,16 @@
                     <p></p>
                 </div>
             </div>-->
-            <ul id="cartItemsListView" data-bind="foreach: cartItems" data-role="listview" data-inset="true" data-theme="c">
-                <li data-bind="text: displayValue"></li>
+            <ul id="cartItemsListView" data-bind="foreach: cartItems" data-role="listview" data-inset="true" data-theme="c" data-split-icon="delete">
+                <li>
+                    <a href="#">
+                        <strong data-bind="text: displayValue"></strong>
+                    </a>
+                    <a href="#" data-bind="click: $root.removeCartItem" data-theme="d">
+                    </a>
+                </li>
             </ul>
-            <div>There are <em data-bind="text: numberOfItems"></em>&nbsp;items in this cart</div>
+            <div data-bind="text: numberOfItemsDisplay"></div>
             <a data-role="button" href="#addCartItemPage" data-icon="arrow-r" data-iconpos="right" data-transition="flip">New Item
             </a>
         </div>

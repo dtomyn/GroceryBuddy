@@ -86,7 +86,8 @@ $(function () {
         };
 
         self.removeItem = function (item) {
-            self.cartItems.remove(item);
+            self.cartItems.destroy(item);
+            //self.cartItems.remove(item);
         };
 // #endregion Operations
 
@@ -202,6 +203,16 @@ $(function () {
                 navigateToCartItemsPage();
             }
             /// Removes the currently selected cart from the collection after confirming that want to delete it
+            , removeCartItem = function (cartItem) {
+                //TODO... better confirm needed!... look at split listview
+                //TODO... this does not work yet... must have syntax incorrect
+                if (confirm('Are you sure you want to remove this item?')) {
+                    selectedCart.removeItem(cartItem);
+                    $('#cartItemsListView').listview('refresh');
+                }
+            }
+
+            /// Removes the currently selected cart from the collection after confirming that want to delete it
             , removeCart = function (cart) {
                 //TODO... better confirm needed!... look at split listview
                 if (confirm('Are you sure you want to remove the following cart: ' + cart.name() + ' that currently has ' + cart.numberOfItems() + ' number of items?')) {
@@ -276,6 +287,8 @@ $(function () {
             , selectedCart: selectedCart
 
             , removeCart: removeCart
+
+            , removeCartItem: removeCartItem
 
             , navigateToCartsPage: navigateToCartsPage
             , navigateToAddCartPage: navigateToAddCartPage
