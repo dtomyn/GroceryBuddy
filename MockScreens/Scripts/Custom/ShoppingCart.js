@@ -45,19 +45,31 @@ $(function () {
 
         self.cartItems = ko.observableArray([]);
 
-        ////TODO... I realize there is probably a MUCH more efficient way of doing this!
+        self.numberOfItemsDisplay = ko.computed(function () {
+            if (self.cartItems().length == 0) {
+                return 'There are no items in the cart';
+            } else {
+                if (self.cartItems().length == 1) {
+                    return 'There is 1 item in the cart';
+                } else {
+                    return 'There are ' + self.cartItems().length + ' in this cart';
+                }
+            }
+        });
+
         self.numberOfItems = ko.computed(function () {
-            var total = 0;
-            $.each(self.cartItems(), function () { total += 1; })
-            return total;
+            return self.cartItems().length;
+            //var total = 0;
+            //$.each(self.cartItems(), function () { total += 1; })
+            //return total;
         });
 
         self.addItem = function (item) {
-            self.cartItems.push(item)
+            self.cartItems.push(item);
         };
 
         self.removeItem = function (item) {
-            self.cartItems.remove(item)
+            self.cartItems.remove(item);
         };
 
         //TODO: reminder
@@ -73,6 +85,13 @@ $(function () {
         self.numberOfPieces = ko.observable(numberOfPieces);
         self.size = ko.observable(size);
         self.measurement = ko.observable(measurement);
+
+        self.displayValue = ko.computed(function () {
+            return self.name() + ' (' + self.category() + ') ' + self.numberOfPieces() + ' x ' + self.size() + ' @ ' + self.measurement();
+            //var total = 0;
+            //$.each(self.cartItems(), function () { total += 1; })
+            //return total;
+        });
 
         return self;
     };
@@ -120,11 +139,16 @@ $(function () {
                 $('#currentCartId').val('');
                 $('#theCartList').listview("refresh");
                 $.mobile.changePage("#carts");
+                $('#carts').trigger('pagecreate');
             }
             , saveCartItem = function () {
                 var ci = new CartItem($('#itemName').val(), $('#itemCategory').val(), $('#itemNumberOfPieces').val(), $('#itemSize').val(), $('#itemMeasurement').val());
-                console.log('want to add ' + ci.category());
+                alert('want to add ' + ci.category());
+                if (selectedCart() != null) {
+                    selectedCart().addItem(ci);
+                }
                 $.mobile.changePage("#cartItems");
+                $('#cartItems').trigger('pagecreate');
             }
             , removeCart = function (cart) {
                 //TODO... better confirm needed!
@@ -137,6 +161,19 @@ $(function () {
                 selectedCart(cart);
                 $.mobile.changePage("#cartItems");
                 $('#cartItems').trigger('pagecreate');
+            }
+            //, backToCartsList = function () {
+            //    $.mobile.changePage("#carts");
+            //    $('#carts').trigger('pagecreate');
+        //}
+            , startAddingCartItem = function () {
+                $('#itemName').val('');
+                $('#itemCategory').val('');
+                $('#itemNumberOfPieces').val('');
+                $('#itemSize').val('');
+                $('#itemMeasurement').val('');
+                $.mobile.changePage("#addCartItem");
+                $('#addCartItem').trigger('pagecreate');
             }
         ;
 
@@ -158,6 +195,7 @@ $(function () {
             , selectedCart: selectedCart
             , removeCart: removeCart
             , showCart: showCart
+            , startAddingCartItem: startAddingCartItem
         };
     };
 

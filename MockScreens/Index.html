@@ -67,35 +67,32 @@
         <!-- /STANDARD HEADER -->
 
         <div data-role="content">
-            <div data-role="content">
-                <ul id="theCartList" data-bind="foreach: carts" data-role="listview" data-inset="true" data-theme="c">
-                    <li>
-                        <strong data-bind="text: name" contenteditable="true"></strong>
-                        <div class="ui-grid-b">
-                            <div class="ui-block-a">
-                                <a href="#" data-bind="click: $root.showCart">
-                                    <img src="Images/ShoppingCart.PNG" />
-                                </a>
-                            </div>
-                            <div class="ui-block-b">
-                                <a href="#" data-bind="click: $root.removeCart" data-theme="d">
-                                    <img src="Images/Delete.PNG" />
-                                </a>
-                            </div>
-                            <div class="ui-block-c">
-                                <a href="#">
-                                    <img src="Images/CalendarColour.PNG" />
-                                </a>
-                            </div>
+            <ul id="theCartList" data-bind="foreach: carts" data-role="listview" data-inset="true" data-theme="c">
+                <li>
+                    <strong data-bind="text: name" contenteditable="true"></strong>
+                    <div class="ui-grid-b">
+                        <div class="ui-block-a">
+                            <a href="#" data-bind="click: $root.showCart">
+                                <img src="Images/ShoppingCart.PNG" />
+                            </a>
                         </div>
-                        <div>There are <em data-bind="text: numberOfItems"></em>&nbsp;items in this cart</div>
-                    </li>
-                </ul>
-                <a data-bind="click: startAddCart"> 
-                    <img src="Images/NewShoppingCart.PNG" />
-                </a>
-            </div>
-
+                        <div class="ui-block-b">
+                            <a href="#" data-bind="click: $root.removeCart" data-theme="d">
+                                <img src="Images/Delete.PNG" />
+                            </a>
+                        </div>
+                        <div class="ui-block-c">
+                            <a href="#">
+                                <img src="Images/CalendarColour.PNG" />
+                            </a>
+                        </div>
+                    </div>
+                    <div data-bind="text: numberOfItemsDisplay"</div>
+                </li>
+            </ul>
+            <a data-bind="click: startAddCart"> 
+                <img src="Images/NewShoppingCart.PNG" />
+            </a>
         </div>
 
 
@@ -213,13 +210,18 @@
         <!-- /STANDARD HEADER -->
 
         <div id="cartAndItems" data-role="content" data-bind="with: selectedCart">
+
             <strong data-bind="text: name" contenteditable="true"></strong>
-            <div data-role="collapsible-set" data-theme="d" id="collapsibleItemList">
-                <div data-role="collapsible">
-                    <h3>Section Header</h3>
+<!--            <div data-role="collapsible-set" data-bind="foreach: cartItems" data-theme="d" id="collapsibleItemList">
+                <div data-role="collapsible"><h3 data-bind="text: category"></h3>
+                    <p></p>
                 </div>
-            </div>
-            <a data-role="button" href="#addCartItem" data-icon="arrow-r" data-iconpos="right" data-transition="flip">New
+            </div>-->
+            <ul id="Ul1" data-bind="foreach: cartItems" data-role="listview" data-inset="true" data-theme="c">
+                <li data-bind="text: displayValue"></li>
+            </ul>
+            <div>There are <em data-bind="text: numberOfItems"></em>&nbsp;items in this cart</div>
+            <a data-role="button" href="#addCartItem" data-icon="arrow-r" data-iconpos="right" data-transition="flip">New Item
             </a>
         </div>
 
@@ -299,31 +301,22 @@
                     data-bind="options: availableMeasurements, optionsText: 'name', optionsValue: 'value'">
                 </select>
             </div>
-
-            <a data-role="button" data-inline="true" data-bind="click: saveCartItem" data-icon="check" data-iconpos="left">Save
-            </a>
         </div>
 
-        <!-- STANDARD FOOTER -->
+        <!-- **CUSTOM** FOOTER -->
         <div data-role="footer"
             data-theme="b"
             data-position="fixed"
             data-id="vs_footer">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#home"
-                        data-role="button"
-                        data-icon="home">Home</a></li>
-                    <li><a href="#carts"
-                        data-role="button"
-                        data-icon="vs_cart">Carts</a></li>
-                    <li><a href="#config"
-                        data-role="button"
-                        data-icon="gear">Config</a></li>
+                    <li>
+                        <a data-role="button" data-inline="true" data-bind="click: saveCartItem" data-icon="check" data-iconpos="left">Save</a>
+                    </li>
                 </ul>
             </div>
         </div>
-        <!-- /STANDARD FOOTER -->
+        <!-- /**CUSTOM** FOOTER -->
 
     </div>
     <!-- /ADD A CART ITEM -->
