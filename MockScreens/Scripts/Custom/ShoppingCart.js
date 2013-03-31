@@ -136,6 +136,7 @@ $(function () {
             , showCart = function (cart) {
                 selectedCart(cart);
                 $.mobile.changePage("#cartItems");
+                $('#cartItems').trigger('pagecreate');
             }
         ;
 
@@ -164,7 +165,7 @@ $(function () {
 
     ko.applyBindings(shoppingCartViewModel);
 
-    //$.mobile.defaultPageTransition = "slide";
+    $.mobile.defaultPageTransition = "slide";
 });
 
 //var viewSaveID;
