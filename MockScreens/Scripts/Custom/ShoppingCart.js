@@ -147,36 +147,40 @@ $(function () {
                 availableMeasurements.push(new Measurement("L", "L", "TODO"));
             }
             // Called when want to start adding a new cart
-            , startAddCart = function () {
+            , addCartBegin = function () {
                 $('#currentCartName').val('');
-                $.mobile.changePage("#addCartPage");
-                $('#addCartPage').trigger('pagecreate');
-                $('#currentCartName').removeAttr("disabled").focus();
+                navigateToAddCartPage();
+            }
+            // Cancels the save cart operation and navigates back to the main carts page
+            , addCartCancel = function () {
+                $('#currentCartName').val('');
+                navigateToCartsPage();
             }
             // Saves a cart to the carts collection and then navigates back to the main carts page
-            , saveCart = function () {
+            , addCartSave = function () {
                 var gc = new GroceryCart($('#currentCartName').val());
                 carts.push(gc);
                 $('#currentCartName').val('');
-                $.mobile.changePage("#carts");
-                $('#carts').trigger('pagecreate');
-                $('#theCartList').listview('refresh');
+                navigateToCartsPage();
             }
-            // Cancels the save cart operation and navigates back to the main carts page
-            , cancelSaveCart = function () {
-                $('#currentCartName').val('');
-                $.mobile.changePage("#carts");
-                $('#carts').trigger('pagecreate');
+
+            // Called when want to start adding a new item into a cart
+            , addCartItemBegin = function () {
+                $('#itemName').val('');
+                $('#itemCategory').val('');
+                $('#itemNumberOfPieces').val('');
+                $('#itemSize').val('');
+                $('#itemMeasurement').val('');
+                navigateToAddCartItemPage();
             }
             // Saves a cart items to the currently selected cart
-            , saveCartItem = function () {
+            , addCartItemSave = function () {
                 var ci = new CartItem($('#itemName').val(), $('#itemCategory').val(), $('#itemNumberOfPieces').val(), $('#itemSize').val(), $('#itemMeasurement').val());
                 alert('want to add ' + ci.category());
                 if (selectedCart() != null) {
                     selectedCart().addItem(ci);
                 }
-                $.mobile.changePage("#cartItems");
-                $('#cartItems').trigger('pagecreate');
+                navigateToCartItemsPage();
             }
             // Removes the currently selected cart from the collection after confirming that want to delete it
             , removeCart = function (cart) {
@@ -187,21 +191,35 @@ $(function () {
                 }
             }
             // Shows the contents of the cart
-            , showCart = function (cart) {
+            , viewCartBegin = function (cart) {
                 selectedCart(cart);
-                $.mobile.changePage("#cartItems");
-                $('#cartItems').trigger('pagecreate');
+                navigateToCartItemsPage();
             }
-            // Called when want to start adding a new item into a cart
-            , startAddingCartItem = function () {
-                $('#itemName').val('');
-                $('#itemCategory').val('');
-                $('#itemNumberOfPieces').val('');
-                $('#itemSize').val('');
-                $('#itemMeasurement').val('');
+
+// #region NAVIGATION operations
+            // Wraps up whatever needs to be done when navigating to main Carts page
+            , navigateToCartsPage = function () {
+                $.mobile.changePage("#cartsPage");
+                $('#cartsPage').trigger('pagecreate');
+                $('#theCartList').listview('refresh');
+            }
+
+            , navigateToAddCartPage = function () {
+                $.mobile.changePage("#addCartPage");
+                $('#addCartPage').trigger('pagecreate');
+            }
+
+            , navigateToCartItemsPage = function () {
+                $.mobile.changePage("#cartItemsPage");
+                $('#cartItemsPage').trigger('pagecreate');
+            }
+
+            , navigateToAddCartItemPage = function () {
                 $.mobile.changePage("#addCartItem");
                 $('#addCartItem').trigger('pagecreate');
             }
+// #endregion NAVIGATION operations
+
 // #endregion Operations
         ;
 
@@ -217,18 +235,28 @@ $(function () {
             carts: carts
             , availableCategories: availableCategories
             , availableMeasurements: availableMeasurements
+
             , getCarts: getCarts
             , getCategories: getCategories
             , getMeasurements: getMeasurements
-            , startAddCart: startAddCart
-            , startAddCart: startAddCart
-            , saveCart: saveCart
-            , saveCartItem: saveCartItem
+
+            , addCartBegin: addCartBegin
+            , addCartCancel: addCartCancel
+            , addCartSave: addCartSave
+
+            , viewCartBegin: viewCartBegin
+
+            , addCartItemBegin: addCartItemBegin
+            , addCartItemSave: addCartItemSave
+
             , selectedCart: selectedCart
+
             , removeCart: removeCart
-            , showCart: showCart
-            , startAddingCartItem: startAddingCartItem
-            , cancelSaveCart: cancelSaveCart
+
+            , navigateToCartsPage: navigateToCartsPage
+            , navigateToAddCartPage: navigateToAddCartPage
+            , navigateToCartItemsPage: navigateToCartItemsPage
+            , navigateToAddCartItemPage: navigateToAddCartItemPage
         };
     };
 

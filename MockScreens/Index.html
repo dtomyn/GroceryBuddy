@@ -27,7 +27,7 @@
 </head>
 <body>
     <!-- HOME SCREEN -->
-    <div id="home"
+    <div id="homePage"
         data-role="page"
         data-theme="b"
         data-title="Grocery Buddy: Home">
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div data-role="controlgroup">
-            <a href="#carts"
+            <a href="#cartsPage"
                 data-role="button"
                 data-icon="arrow-r"
                 data-transition="flip">Carts</a>
@@ -51,7 +51,7 @@
     <!-- / HOME SCREEN -->
 
     <!-- CARTS SCREEN -->
-    <div id="carts"
+    <div id="cartsPage"
         data-role="page"
         data-theme="b"
         data-title="Grocery Buddy: Carts">
@@ -61,7 +61,7 @@
             data-theme="b"
             data-position="fixed">
             <h1>Carts</h1>
-            <a href="#home"
+            <a href="#homePage"
                 data-icon="home"
                 data-iconpos="notext">Home</a>
             <a href="#info"
@@ -77,7 +77,7 @@
                     <strong data-bind="text: name" contenteditable="true"></strong>
                     <div class="ui-grid-b">
                         <div class="ui-block-a">
-                            <a href="#" data-bind="click: $root.showCart">
+                            <a href="#" data-bind="click: $root.viewCartBegin">
                                 <img src="Images/ShoppingCart.PNG" />
                             </a>
                         </div>
@@ -95,7 +95,7 @@
                     <div data-bind="text: numberOfItemsDisplay"></div>
                 </li>
             </ul>
-            <a data-bind="click: startAddCart"> 
+            <a data-bind="click: addCartBegin"> 
                 <img src="Images/NewShoppingCart.PNG" />
             </a>
         </div>
@@ -108,10 +108,10 @@
             data-id="vs_footer">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#home"
+                    <li><a href="#homePage"
                         data-role="button"
                         data-icon="home">Home</a></li>
-                    <li><a href="#carts"
+                    <li><a href="#cartsPage"
                         data-role="button"
                         data-icon="vs_cart">Carts</a></li>
                     <li><a href="#config"
@@ -138,12 +138,12 @@
             <h1>Add Cart</h1>
             <a
                 data-role="button"
-                data-direction="reverse"
                 data-rel="back"
                 data-icon="back"
                 data-iconpos="left"
                 class="ui-btn-left"
-                href="#carts">Back
+                data-bind="click: navigateToCartsPage"
+                >Back
             </a>
             <a href="#info"
                 data-icon="info"
@@ -158,10 +158,10 @@
                     Cart name
                 </label>
                 <input id="currentCartName" placeholder="Enter cart name" type="text" />
-<!--                <a data-role="button" data-inline="true" data-bind="click: saveCart" data-icon="check" data-iconpos="left">Save</a>-->
+<!--                <a data-role="button" data-inline="true" data-bind="click: addCartSave" data-icon="check" data-iconpos="left">Save</a>-->
                 <fieldset>
-                 <div><button type="submit" data-theme="c" data-bind="click: cancelSaveCart">Cancel</button></div>
-                 <div><button type="submit" data-theme="b" data-bind="click: saveCart">Save</button></div>
+                    <div><button type="submit" data-theme="c" data-bind="click: addCartCancel">Cancel</button></div>
+                    <div><button type="submit" data-theme="b" data-bind="click: addCartSave">Save</button></div>
                 </fieldset>
             </div>
         </div>
@@ -174,10 +174,10 @@
             <div data-role="navbar">
                 <ul>
                     <li>
-                        <a data-role="button" data-inline="true" data-bind="click: cancelSaveCart" data-icon="check" data-iconpos="left">Cancel</a>
+                        <a data-role="button" data-inline="true" data-bind="click: addCartCancel" data-icon="check" data-iconpos="left">Cancel</a>
                     </li>
                     <li>
-                        <a data-role="button" data-inline="true" data-bind="click: saveCart" data-icon="check" data-iconpos="left">Save</a>
+                        <a data-role="button" data-inline="true" data-bind="click: addCartSave" data-icon="check" data-iconpos="left">Save</a>
                     </li>
                 </ul>
             </div>
@@ -188,7 +188,7 @@
     <!-- /ADD A CART -->
 
     <!-- CART ITEMS SCREEN -->
-    <div id="cartItems"
+    <div id="cartItemsPage"
         data-theme="b"
         data-role="page"
         data-title="Grocery Buddy: Cart Items">
@@ -200,12 +200,12 @@
             <h1>Cart Items</h1>
             <a
                 data-role="button"
-                data-direction="reverse"
                 data-rel="back"
                 data-icon="back"
                 data-iconpos="left"
                 class="ui-btn-left"
-                href="#carts">Back
+                data-bind="click: navigateToCartsPage"
+                >Back
             </a>
             <a href="#info"
                 data-icon="info"
@@ -237,10 +237,10 @@
             data-id="vs_footer">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#home"
+                    <li><a href="#homePage"
                         data-role="button"
                         data-icon="home">Home</a></li>
-                    <li><a href="#carts"
+                    <li><a href="#cartsPage"
                         data-role="button"
                         data-icon="vs_cart">Carts</a></li>
                     <li><a href="#config"
@@ -267,12 +267,12 @@
             <h1>Add Cart Item</h1>
             <a
                 data-role="button"
-                data-direction="reverse"
                 data-rel="back"
                 data-icon="back"
                 data-iconpos="left"
                 class="ui-btn-left"
-                href="#carts">Back
+                data-bind="click: navigateToCartItemsPage"
+                >Back
             </a>
             <a href="#info"
                 data-icon="info"
@@ -316,7 +316,7 @@
             <div data-role="navbar">
                 <ul>
                     <li>
-                        <a data-role="button" data-inline="true" data-bind="click: saveCartItem" data-icon="check" data-iconpos="left">Save</a>
+                        <a data-role="button" data-inline="true" data-bind="click: addCartItemSave" data-icon="check" data-iconpos="left">Save</a>
                     </li>
                 </ul>
             </div>
@@ -325,7 +325,6 @@
 
     </div>
     <!-- /ADD A CART ITEM -->
-
 
     <!-- config -->
     <div id="config"
@@ -338,7 +337,7 @@
             data-theme="b"
             data-position="fixed">
             <h1>Config</h1>
-            <a href="#home"
+            <a href="#homePage"
                 data-icon="home"
                 data-iconpos="notext">Home</a>
             <a href="#info"
@@ -364,10 +363,10 @@
             data-id="vs_footer">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#home"
+                    <li><a href="#homePage"
                         data-role="button"
                         data-icon="home">Home</a></li>
-                    <li><a href="#carts"
+                    <li><a href="#cartsPage"
                         data-role="button"
                         data-icon="vs_cart">Carts</a></li>
                     <li><a href="#config"
@@ -408,7 +407,7 @@
                 data-role="button"
                 data-inline="true"
                 data-rel="back">Cancel</a>
-            <a href="#home"
+            <a href="#homePage"
                 data-role="button"
                 data-inline="true">Home</a>
         </div>
