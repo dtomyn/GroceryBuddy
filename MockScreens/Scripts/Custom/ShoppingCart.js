@@ -234,7 +234,7 @@ $(function () {
             , navigateToCartItemsPage = function () {
                 $.mobile.changePage("#cartItemsPage");
                 $('#cartItemsPage').trigger('pagecreate');
-                $('#theCartList').listview('refresh');
+                $('#cartItemsListView').listview('refresh');
             }
 
             ///Navigates to the "addCartItemPage". Wrapped to ensure jQuery mobile "redraws" screen correctly

@@ -43,10 +43,12 @@
             <a href="#cartsPage"
                 data-role="button"
                 data-icon="arrow-r"
+                data-iconpos="right"
                 data-transition="flip">Carts</a>
             <a href="#info"
                 data-role="button"
                 data-icon="arrow-r"
+                data-iconpos="right"
                 data-rel="dialog">Info</a>
         </div>
     </div>
@@ -74,27 +76,16 @@
         <!-- /STANDARD HEADER -->
 
         <div data-role="content">
-            <ul id="theCartList" data-bind="foreach: carts" data-role="listview" data-inset="true" data-theme="c">
+            <ul id="theCartList" data-bind="foreach: carts" data-role="listview" data-inset="true" data-theme="c" data-split-icon="delete">
                 <li>
-                    <strong data-bind="text: name, valueUpdate: 'afterkeydown'" contenteditable="true" required></strong>
-                    <div class="ui-grid-b">
-                        <div class="ui-block-a">
-                            <a href="#" data-bind="click: $root.viewCartBegin">
-                                <img src="Images/ShoppingCart.PNG" />
-                            </a>
-                        </div>
-                        <div class="ui-block-b">
-                            <a href="#" data-bind="click: $root.removeCart" data-theme="d">
-                                <img src="Images/Delete.PNG" />
-                            </a>
-                        </div>
-                        <div class="ui-block-c">
-                            <a href="#">
-                                <img src="Images/CalendarColour.PNG" />
-                            </a>
-                        </div>
-                    </div>
-                    <div data-bind="text: numberOfItemsDisplay"></div>
+                    <a href="#" data-bind="click: $root.viewCartBegin">
+                        <img src="Images/ShoppingCart.PNG" />
+                        <strong data-bind="text: name, valueUpdate: 'afterkeydown'" contenteditable="true" required></strong>
+                        <!--<p class="ui-li-aside"><strong>4:48</strong>PM</p>-->
+                        <div class="ui-li-aside" data-bind="text: numberOfItems"></div>
+                    </a>
+                    <a href="#" data-bind="click: $root.removeCart" data-theme="d">
+                    </a>
                 </li>
             </ul>
             <a data-bind="click: addCartBegin"> 
@@ -224,7 +215,7 @@
                     <p></p>
                 </div>
             </div>-->
-            <ul id="Ul1" data-bind="foreach: cartItems" data-role="listview" data-inset="true" data-theme="c">
+            <ul id="cartItemsListView" data-bind="foreach: cartItems" data-role="listview" data-inset="true" data-theme="c">
                 <li data-bind="text: displayValue"></li>
             </ul>
             <div>There are <em data-bind="text: numberOfItems"></em>&nbsp;items in this cart</div>
