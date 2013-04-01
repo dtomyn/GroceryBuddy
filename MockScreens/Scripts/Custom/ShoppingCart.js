@@ -42,7 +42,7 @@ $(function () {
     };
 
     /// Class to represent a grocery cart
-    var GroceryCart = function ( name) {
+    var GroceryCart = function (name) {
         var self = this;
 
 // #region Properties
@@ -86,8 +86,8 @@ $(function () {
         };
 
         self.removeItem = function (item) {
-            self.cartItems.destroy(item);
-            //self.cartItems.remove(item);
+            //self.cartItems.destroy(item);
+            self.cartItems.remove(item);
         };
 // #endregion Operations
 
@@ -207,7 +207,7 @@ $(function () {
                 //TODO... better confirm needed!... look at split listview
                 //TODO... this does not work yet... must have syntax incorrect
                 if (confirm('Are you sure you want to remove this item?')) {
-                    selectedCart.removeItem(cartItem);
+                    selectedCart().removeItem(cartItem);
                     $('#cartItemsListView').listview('refresh');
                 }
             }
@@ -216,8 +216,8 @@ $(function () {
             , removeCart = function (cart) {
                 //TODO... better confirm needed!... look at split listview
                 if (confirm('Are you sure you want to remove the following cart: ' + cart.name() + ' that currently has ' + cart.numberOfItems() + ' number of items?')) {
-                    carts.destroy(cart);
-                    //carts.remove(cart);
+                    //carts.destroy(cart);
+                    carts.remove(cart);
                     $('#theCartList').listview("refresh");
                 }
             }
