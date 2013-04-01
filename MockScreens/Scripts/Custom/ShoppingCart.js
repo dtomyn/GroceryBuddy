@@ -65,7 +65,7 @@ $(function () {
                 if (self.cartItems().length == 1) {
                     return 'There is 1 item in the cart';
                 } else {
-                    return 'There are ' + self.cartItems().length + ' in this cart';
+                    return 'There are ' + self.cartItems().length + ' items in this cart';
                 }
             }
         });
