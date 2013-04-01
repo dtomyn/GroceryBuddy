@@ -73,7 +73,8 @@ $(function () {
         // Simply returns the number of items
         self.numberOfItems = ko.computed(function () {
             return self.cartItems().length;
-            //NOTE: the below shows how could have used a "foreach" method too
+            //NOTE: the below shows how could have used a "foreach" method too... 
+            //note also that if using "destroy" method in Knockout will need to do something ehre
             //var total = 0;
             //$.each(self.cartItems(), function () { total += 1; })
             //return total;
@@ -86,7 +87,7 @@ $(function () {
         };
 
         self.removeItem = function (item) {
-            //self.cartItems.destroy(item);
+            //self.cartItems.destroy(item); //This is probably the better way, but causes complication with count
             self.cartItems.remove(item);
         };
 // #endregion Operations
@@ -95,10 +96,11 @@ $(function () {
     };
 
     /// Class to represent an item in a cart
-    var CartItem = function (name, category, numberOfPieces, size, measurement) {
+    var CartItem = function (sku, name, category, numberOfPieces, size, measurement) {
         var self = this;
 
 // #region Properties
+        self.sku = ko.observable(sku);
         self.name = ko.observable(name).extend({ minLength: 2, maxLength: 10 });
         //self.name = ko.observable(name).extend({ required: true });
         self.category = ko.observable(category).extend({ required: true });
@@ -196,7 +198,7 @@ $(function () {
             /// Saves a cart items to the currently selected cart
             , addCartItemSave = function () {
                 //TODO: better way to do this is to have an observable item on this page... for now using standard jQuery to get values
-                var ci = new CartItem($('#itemName').val(), $('#itemCategory').val(), $('#itemNumberOfPieces').val(), $('#itemSize').val(), $('#itemMeasurement').val());
+                var ci = new CartItem(123, $('#itemName').val(), $('#itemCategory').val(), $('#itemNumberOfPieces').val(), $('#itemSize').val(), $('#itemMeasurement').val());
                 if (selectedCart() != null) {
                     selectedCart().addItem(ci);
                 }
@@ -216,7 +218,7 @@ $(function () {
             , removeCart = function (cart) {
                 //TODO... better confirm needed!... look at split listview
                 if (confirm('Are you sure you want to remove the following cart: ' + cart.name() + ' that currently has ' + cart.numberOfItems() + ' number of items?')) {
-                    //carts.destroy(cart);
+                    //carts.destroy(cart); //This is probably the better way, but causes complication with count
                     carts.remove(cart);
                     $('#theCartList').listview("refresh");
                 }
