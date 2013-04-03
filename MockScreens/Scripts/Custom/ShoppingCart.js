@@ -15,10 +15,62 @@ $(function () {
         $('#itemName').focus();
     });
 
+    $('#sku').on('change', function (e) {
+        alert('call service to get name, etc');
+        $('#itemName').val('Something');
+    });
+
+
+    //var Store = function() {
+
+    //    name
+
+    //    streetAddress
+
+    //    city
+
+    //    province
+
+    //    postalcode
+
+    //    telephone
+
+    //    lat
+
+    //    long
+
+    //}
+
+ 
+
+    //var Product = function() {
+
+    //    sku
+
+    //    name
+
+
+//    ?? collection of ProductStorePrice
+
+//}
+
+    //    var ProductStorePrice = function() {
+
+    //        sku
+
+    //        storeName
+
+    //        price
+
+    //        priceDate
+
+    //    }
+
+
     /// Class to represent a category
     var Category = function (value, name, icon) {
         var self = this;
-
+        
 // #region Properties
         self.value = value;
         self.name = name;
@@ -246,6 +298,8 @@ $(function () {
             ///Navigates to the "cartItemsPage". Wrapped to ensure jQuery mobile "redraws" screen correctly
             , navigateToCartItemsPage = function () {
                 $.mobile.changePage("#cartItemsPage");
+                //clear out previous values...
+
                 $('#cartItemsPage').trigger('pagecreate');
                 $('#cartItemsListView').listview('refresh');
             }
@@ -256,6 +310,9 @@ $(function () {
                 $('#addCartItemPage').trigger('pagecreate');
             }
 // #endregion NAVIGATION operations
+            , startBarCodeScanning = function () {
+                scanner.scan();
+            }
 
 // #endregion Operations
         ;
@@ -266,6 +323,8 @@ $(function () {
         getCategories();
         /// Make the call to initialize the measurements
         getMeasurements();
+
+        
 
         /* NOTE: if want to do the "best practice" of selectively determining what to expose, would do the below */
         return {
@@ -291,6 +350,8 @@ $(function () {
             , removeCart: removeCart
 
             , removeCartItem: removeCartItem
+
+            , startBarCodeScanning: startBarCodeScanning
 
             , navigateToCartsPage: navigateToCartsPage
             , navigateToAddCartPage: navigateToAddCartPage

@@ -6,3 +6,4 @@
 /// <reference path="../knockout-2.2.1.js" />
 /// <reference path="../knockout.validation.js" />
 /// <reference path="Utils.js" />
+/// <reference path="ScanIt.js" />

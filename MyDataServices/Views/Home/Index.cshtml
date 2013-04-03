@@ -1,0 +1,34 @@
+﻿<div id="body">
+    <div class="left-section" style="height: 600px; width: 25%; float: left; background-color: #b9b9b9">
+        <h2>Products</h2>
+        <button data-bind="click: newProduct">New Product</button>
+        <button id="saveAll">Save</button>
+
+        <ul data-bind="foreach: products">
+            <li style="list-style: none">
+                <a data-bind="text: Name, id: Sku" href="#"></a>
+                <input type="button" value="Select" data-bind="click: $parent.selectProduct" />
+            </li>
+        </ul>
+    </div>
+    <div class="right-section" style="height: 600px; width: 75%; float: left; background-color: #d9d9d9" 
+        data-bind="with: selectedProduct">
+        <div>
+            Sku:
+            <input data-bind="value: Sku" />
+        </div>
+        <div>
+            Name:
+            <input data-bind="value: Name" />
+        </div>
+        <div>
+            Description:
+            <textarea data-bind="value: Description" ></textarea>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/knockout-2.2.0.js"></script>
+    <script src="~/Scripts/ProductViewModel.js"></script>
+}

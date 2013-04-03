@@ -16,7 +16,7 @@
 * specific language governing permissions and limitations
 * under the License.
 */
-var app = {
+var scanner = {
     // Application Constructor
     initialize: function () {
         this.bindEvents();
@@ -32,9 +32,9 @@ var app = {
     // deviceready Event Handler
     //
     // The scope of `this` is the event. In order to call the `receivedEvent`
-    // function, we must explicity call `app.receivedEvent(...);`
+    // function, we must explicity call `scanner.receivedEvent(...);`
     onDeviceReady: function () {
-        app.receivedEvent('deviceready');
+        scanner.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
@@ -48,10 +48,12 @@ var app = {
         console.log('Received Event: ' + id);
     },
     scan: function () {
+        alert('hi');
         console.log('scanning');
         try {
+            alert('start scan process');
             window.plugins.barcodeScanner.scan(function (args) {
-                console.log("Scanner result: \n" +
+                console.log("scanner result: \n" +
                     "text: " + args.text + "\n" +
                     "format: " + args.format + "\n" +
                     "cancelled: " + args.cancelled + "\n");
@@ -60,11 +62,14 @@ var app = {
                 window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
                 }
                 */
-                document.getElementById("info").innerHTML = args.text;
+                $('#sku').val(args.text);
+                //document.getElementById("info").innerHTML = args.text;
                 console.log(args);
             });
+            $('#sku').val('9998');
         } catch (ex) {
-            console.log(ex.message);
+            alert('Unable to scan barcode. Error message was ' + ex.message);
+            $('#sku').val('9999');
         }
     }
 

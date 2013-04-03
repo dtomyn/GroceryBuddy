@@ -33,11 +33,18 @@
     <!-- Demo also shows adding this too -->
     <!--<script src="childbrowser.js"></script>-->
     <!-- Finally... add our custom JavaScript -->
-    <!--<script src="Scripts/Custom/ScanIt.js"></script>-->
+    <script src="Scripts/Custom/ScanIt.js"></script>
 
     <link href="Content/Custom/AppStyles.css" rel="stylesheet" /> 
 
     <script src="Scripts/Custom/ShoppingCart.js"></script> 
+
+    <style type="text/css">
+        .auto-style1 {
+            width: 61px;
+            height: 45px;
+        }
+    </style>
 
 </head>
 <body>
@@ -295,9 +302,15 @@
 
         <div data-role="content">
             <div>
-                <label for="itemName">Name:</label>
-                <input id="itemName" type="text" required />
+                <label for="sku">SKU:</label>
+                <input id="sku" type="text" placeholder="Enter (or scan) SKU" required />
+                <a data-bind="click: $root.startBarCodeScanning">
+                    <img alt="Click to start bar code scanner" class="auto-style1" src="Images/Barcode.PNG" />
+                </a>
             </div>
+            <div>
+                <label for="itemName">Name:</label>
+                <input id="itemName" type="text" placeholder="Enter name" required />
             <div>
                 <label for="itemCategory">Category:</label>
                 <select name="itemCategory" id="itemCategory" data-native-menu="true"
