@@ -93,6 +93,20 @@ $(function () {
         return self;
     };
 
+    /// Class to represent a product
+    var Product = function (sku, name, description, isDeleted) {
+        var self = this;
+
+// #region Properties
+        Sku: ko.observable(sku);
+        Name: ko.observable(name);
+        Description: ko.observable(description);
+        IsDeleted: ko.observable(isDeleted);
+// #endregion Properties
+
+        return self;
+    };
+
     /// Class to represent a grocery cart
     var GroceryCart = function (name) {
         var self = this;
@@ -314,6 +328,41 @@ $(function () {
                 scanner.scan();
             }
 
+// #region Product stuff
+            , products = ko.observableArray([])
+            , selectedProduct = ko.observable(null)
+            , selectProduct = function (product) {
+                viewModel.selectedProduct(this);
+                $(".right-section").show();
+            }
+            , newProduct = function () {
+                this.products.push({
+                    Sku: ko.observable(this.products().length + 1),
+                    Name: ko.observable("New " + this.products().length),
+                    Description: ko.observable("Description " + this.products().length),
+                    IsNew: ko.observable(true)
+                });
+            }
+            , getProducts = function () {
+                $.ajax(
+                {
+                    url: "http://grocerybuddydata.azurewebsites.net/api/Products",
+                    contentType: "jsonp",
+                    type: "GET",
+                    success: function (data) {
+                        $.each(data, function (index) {
+                            viewModel.products.push(toKoObserable(data[index]));
+                        });
+                        alert('Found ' + products.length() + ' products');
+                        //ko.applyBindings(viewModel);
+                    },
+                    error: function (data) {
+                        alert("ERROR");
+                    }
+                });
+            }
+//#endregion Product stuff
+
 // #endregion Operations
         ;
 
@@ -323,8 +372,17 @@ $(function () {
         getCategories();
         /// Make the call to initialize the measurements
         getMeasurements();
-
+        /// Make the call to initialize the products
+        getProducts();
         
+        function toKoObserable(product) {
+            return {
+                Sku: ko.observable(product.Sku),
+                Name: ko.observable(product.Name),
+                Description: ko.observable(product.Description),
+                IsDeleted: ko.observable(product.IsDeleted)
+            };
+        }
 
         /* NOTE: if want to do the "best practice" of selectively determining what to expose, would do the below */
         return {
