@@ -385,6 +385,7 @@ $(function () {
                             alert('success. products after load: ' + shoppingCartViewModel.products().length + ' data to load ' + data.length);
                         },
                         error: function(xhr, status, error) {
+                            debugger;
                             alert("ERROR");
                             var err = eval("(" + xhr.responseText + ")");
                             // Display the specific error raised by the server (e.g. not a
