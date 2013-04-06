@@ -24,7 +24,7 @@ $(document).ready(function () {
     $.ajax(
         {
             url: "/api/Products",
-            contentType: "text/json",
+            contentType: "text/jsonp",
             type: "GET",
             success: function (data) {
                 $.each(data, function (index) {
@@ -61,7 +61,7 @@ $(document).ready(function () {
             $.ajax(
             {
                 url: vUrl,
-                contentType: "application/json;charset=utf-8",
+                contentType: "application/jsonp;charset=utf-8",
                 type: action,
                 data: JSON.stringify(current)
             });
