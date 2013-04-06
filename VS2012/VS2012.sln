@@ -23,70 +23,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MockScreens", "http://local
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryData", "..\GroceryData\GroceryData.csproj", "{3BEF810F-EADF-4871-90E4-01A5EA3CCB67}"
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "GroceryBuddy", "http://localhost:58383", "{74F2D972-3430-4456-A3AE-AD693E69C9F3}"
-	ProjectSection(WebsiteProperties) = preProject
-		UseIISExpress = "true"
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_58383"
-		Debug.AspNetCompiler.PhysicalPath = "..\GroceryBuddy\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58383\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_58383"
-		Release.AspNetCompiler.PhysicalPath = "..\GroceryBuddy\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58383\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "..\GroceryBuddy\"
-		DefaultWebSiteLanguage = "Visual C#"
-	EndProjectSection
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Ex_Files_jQuery_Mobile_EssT", "..\..\..\Lynda.com training\Ex_Files_jQuery_Mobile_EssT\Ex_Files_jQuery_Mobile_EssT\", "{FE9BB246-56CB-4CA0-A776-8453C688FB54}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/Ex_Files_jQuery_Mobile_EssT"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\Lynda.com training\Ex_Files_jQuery_Mobile_EssT\Ex_Files_jQuery_Mobile_EssT\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Ex_Files_jQuery_Mobile_EssT\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/Ex_Files_jQuery_Mobile_EssT"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\Lynda.com training\Ex_Files_jQuery_Mobile_EssT\Ex_Files_jQuery_Mobile_EssT\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Ex_Files_jQuery_Mobile_EssT\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "50514"
-	EndProjectSection
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BarcodeDemo-master", "..\..\..\..\Downloads\BarcodeDemo-master\BarcodeDemo-master\", "{E0873EEC-653F-47B2-B79B-46BBD8B94ACA}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/BarcodeDemo-master"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\Downloads\BarcodeDemo-master\BarcodeDemo-master\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\BarcodeDemo-master\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/BarcodeDemo-master"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\Downloads\BarcodeDemo-master\BarcodeDemo-master\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\BarcodeDemo-master\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "53234"
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDataServices", "..\MyDataServices\MyDataServices.csproj", "{53572221-F39C-4C87-AEEF-396C727B74BB}"
 EndProject
 Global
@@ -99,22 +35,6 @@ Global
 		{21B5122E-C50D-4B8F-8545-8B7E34F4DCED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21B5122E-C50D-4B8F-8545-8B7E34F4DCED}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{21B5122E-C50D-4B8F-8545-8B7E34F4DCED}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{3BEF810F-EADF-4871-90E4-01A5EA3CCB67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3BEF810F-EADF-4871-90E4-01A5EA3CCB67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3BEF810F-EADF-4871-90E4-01A5EA3CCB67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3BEF810F-EADF-4871-90E4-01A5EA3CCB67}.Release|Any CPU.Build.0 = Release|Any CPU
-		{74F2D972-3430-4456-A3AE-AD693E69C9F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74F2D972-3430-4456-A3AE-AD693E69C9F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74F2D972-3430-4456-A3AE-AD693E69C9F3}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{74F2D972-3430-4456-A3AE-AD693E69C9F3}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{FE9BB246-56CB-4CA0-A776-8453C688FB54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE9BB246-56CB-4CA0-A776-8453C688FB54}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE9BB246-56CB-4CA0-A776-8453C688FB54}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE9BB246-56CB-4CA0-A776-8453C688FB54}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{E0873EEC-653F-47B2-B79B-46BBD8B94ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0873EEC-653F-47B2-B79B-46BBD8B94ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0873EEC-653F-47B2-B79B-46BBD8B94ACA}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0873EEC-653F-47B2-B79B-46BBD8B94ACA}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{53572221-F39C-4C87-AEEF-396C727B74BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{53572221-F39C-4C87-AEEF-396C727B74BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53572221-F39C-4C87-AEEF-396C727B74BB}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -27,10 +27,11 @@ $(document).ready(function () {
             contentType: "text/jsonp",
             type: "GET",
             success: function (data) {
+                alert('success. products before load: ' + viewModel.products().length + ' data to load ' + data.length);
                 $.each(data, function (index) {
-                    viewModel.products.push(toKoObserable(data[index]));
+                    viewModel.products.push(toProductKoObservable(data[index]));
                 });
-
+                alert('success. products after load: ' + viewModel.products().length + ' data to load ' + data.length);
                 ko.applyBindings(viewModel);
             },
             error: function (data) {
@@ -38,7 +39,7 @@ $(document).ready(function () {
             }
         });
 
-    function toKoObserable(product) {
+    function toProductKoObservable(product) {
         return {
             Sku: ko.observable(product.Sku),
             Name: ko.observable(product.Name),

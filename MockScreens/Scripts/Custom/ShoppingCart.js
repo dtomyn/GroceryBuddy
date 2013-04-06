@@ -1,6 +1,32 @@
 ﻿/// <reference path="_references.js" />
+var dataLocation = 'http://grocerybuddydata.azurewebsites.net';
+//var dataLocation = 'http://localhost:54328';
 
 $(function () {
+//    // setup all jquery ajax calls to use this error function by default (this can be overridden simply by specifying the error property as normal in the ajax call). 
+//    $.ajaxSetup({
+//        // put your favorite error function here: 
+//        error:
+//            function (XMLHttpRequest, textStatus, errorThrown) {
+//                // release any existing ui blocks 
+//                $.unblockUI;
+//                var errorObj = JSON.parse(XMLHttpRequest.responseText);
+//                // send the user to the system error page if system error, otherwise popup the user error div 
+//                if (!errorObj.Success) {
+//                    if (errorObj.ErrorType != "system") {
+//                        $('#UserError').html(errorObj.Message);
+//                        $.blockUI({
+//                            message: $('#UserErrorWrapper'),
+//                            css: { width: '400px', height: '300px', overflow: 'scroll' }
+//                        });
+//                    }
+//                    else {
+//                        window.location = errorObj.ErrorPageUrl;
+//                    }
+//                }
+//            }
+//    });
+
 
     //NOTE: The below 2 "focus" functions could have been put in the applicable "navigate" methods... done below
     //just to show an alternative method
@@ -15,6 +41,7 @@ $(function () {
         $('#itemName').focus();
     });
 
+    // TODO: find better event perhaps?
     $('#sku').on('change', function (e) {
         alert('call service to get name, etc');
         $('#itemName').val('Something');
@@ -203,24 +230,27 @@ $(function () {
             , availableCategories = ko.observableArray([])
             /// A list of all available measurements that may be selected when entering an item
             , availableMeasurements = ko.observableArray([])
+            /// A list of all available products... pretty heavy handed but...
+            , products = ko.observableArray([])
 // #endregion Properties
 
 // #region Operations
             /// Loads up carts collection with a couple of sample grocery carts
             , getCarts = function () {
+                carts = ko.observableArray([]);
                 carts.push(new GroceryCart("Shopping Cart 1"));
                 carts.push(new GroceryCart("Shopping Cart 2"));
             }
             /// Loads up availableCategories collection with a few category types
             , getCategories = function () {
-                //availableCategories.push(new Category("", "Choose One...", ""));
+                availableCategories = ko.observableArray([]);
                 availableCategories.push(new Category("Produce", "Produce", "TODO"));
                 availableCategories.push(new Category("Dairy", "Dairy", "TODO"));
                 availableCategories.push(new Category("Junk Food", "Junk Food", "TODO"));
             }
             /// Loads up availableMeasurements collection with a few measurement types
             , getMeasurements = function () {
-                //availableMeasurements.push(new Measurement("", "Choose One...", ""));
+                availableMeasurements = ko.observableArray([]);
                 availableMeasurements.push(new Measurement("Grams", "Grams", "TODO"));
                 availableMeasurements.push(new Measurement("KG", "KG", "TODO"));
                 availableMeasurements.push(new Measurement("ML", "ML", "TODO"));
@@ -329,12 +359,7 @@ $(function () {
             }
 
 // #region Product stuff
-            , products = ko.observableArray([])
             , selectedProduct = ko.observable(null)
-            , selectProduct = function (product) {
-                viewModel.selectedProduct(this);
-                $(".right-section").show();
-            }
             , newProduct = function () {
                 this.products.push({
                     Sku: ko.observable(this.products().length + 1),
@@ -343,23 +368,44 @@ $(function () {
                     IsNew: ko.observable(true)
                 });
             }
+            //url: "http://localhost:54328/",  http://grocerybuddydata.azurewebsites.net/api/Products",
             , getProducts = function () {
+                alert('making ajax call now');
+
                 $.ajax(
-                {
-                    url: "http://grocerybuddydata.azurewebsites.net/api/Products",
-                    contentType: "jsonp",
-                    type: "GET",
-                    success: function (data) {
-                        $.each(data, function (index) {
-                            viewModel.products.push(toKoObserable(data[index]));
-                        });
-                        alert('Found ' + products.length() + ' products');
-                        //ko.applyBindings(viewModel);
-                    },
-                    error: function (data) {
-                        alert("ERROR");
-                    }
-                });
+                    {
+                        url: (dataLocation + "/api/Products"),
+                        contentType: "text/jsonp",
+                        type: "GET",
+                        success: function (data) {
+                            alert('success. products before load: ' + shoppingCartViewModel.products().length + ' data to load ' + data.length);
+                            $.each(data, function (index) {
+                                shoppingCartViewModel.products.push(toProductKoObservable(data[index]));
+                            });
+                            alert('success. products after load: ' + shoppingCartViewModel.products().length + ' data to load ' + data.length);
+                        },
+                        error: function (data) {
+                            alert("ERROR");
+                        }
+                    });
+
+                //alert('making ajax call');
+                //$.ajax(
+                //{
+                //    url: "http://localhost:54328/api/Products",
+                //    contentType: "text/json",
+                //    type: "GET",
+                //    success: function (data) {
+                //        //$.each(data, function (index) {
+                //        //    viewModel.products.push(toKoObserable(data[index]));
+                //        //});
+                //        alert('Found ' + products.length() + ' products');
+                //        //ko.applyBindings(viewModel);
+                //    },
+                //    error: function (data) {
+                //        alert("ERROR " + data.message);
+                //    }
+                //});
             }
 //#endregion Product stuff
 
@@ -372,27 +418,18 @@ $(function () {
         getCategories();
         /// Make the call to initialize the measurements
         getMeasurements();
-        /// Make the call to initialize the products
-        getProducts();
         
-        function toKoObserable(product) {
-            return {
-                Sku: ko.observable(product.Sku),
-                Name: ko.observable(product.Name),
-                Description: ko.observable(product.Description),
-                IsDeleted: ko.observable(product.IsDeleted)
-            };
-        }
-
         /* NOTE: if want to do the "best practice" of selectively determining what to expose, would do the below */
         return {
             carts: carts
             , availableCategories: availableCategories
             , availableMeasurements: availableMeasurements
+            , products: products
 
             , getCarts: getCarts
             , getCategories: getCategories
             , getMeasurements: getMeasurements
+            , getProducts: getProducts
 
             , addCartBegin: addCartBegin
             , addCartCancel: addCartCancel
@@ -420,6 +457,9 @@ $(function () {
 
     var shoppingCartViewModel = new ShoppingCartViewModel();
 
+    alert('about to call getProducts');
+    shoppingCartViewModel.getProducts();
+
     ko.validation.rules.pattern.message = 'Invalid.';
 
     shoppingCartViewModel.errors = ko.validation.group(shoppingCartViewModel);
@@ -435,6 +475,15 @@ $(function () {
     ko.applyBindings(shoppingCartViewModel);
 
     $.mobile.defaultPageTransition = "slide";
+
+    function toProductKoObservable(product) {
+        return {
+            Sku: ko.observable(product.Sku),
+            Name: ko.observable(product.Name),
+            Description: ko.observable(product.Description),
+            IsDeleted: ko.observable(product.IsDeleted)
+        };
+    }
 });
 
 //var viewSaveID;
