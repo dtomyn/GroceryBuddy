@@ -384,8 +384,12 @@ $(function () {
                             });
                             alert('success. products after load: ' + shoppingCartViewModel.products().length + ' data to load ' + data.length);
                         },
-                        error: function (data) {
+                        error: function(xhr, status, error) {
                             alert("ERROR");
+                            var err = eval("(" + xhr.responseText + ")");
+                            // Display the specific error raised by the server (e.g. not a
+                            //   valid value for Int32, or attempted to divide by zero).
+                            alert(err.Message);
                         }
                     });
 
